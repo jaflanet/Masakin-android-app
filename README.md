@@ -16,5 +16,5 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 #install
-dart pub add flutter_native_splash
+flutter pub add flutter_native_splash
 flutter pub add curved_navigation_bar
