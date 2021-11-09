@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Masak.in',
       theme: ThemeData(
-      scaffoldBackgroundColor: Colors.white,
+      scaffoldBackgroundColor: Color(0xFFFDFBF2),
       visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MainScreen(),

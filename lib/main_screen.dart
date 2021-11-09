@@ -6,8 +6,8 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.white,
-        color: Colors.yellow,
+        backgroundColor: Color(0xFFFDFBF2),
+        color: Color(0xFFF5C901),
         items: [
           Icon(Icons.home, size: 30,),
           Icon(Icons.library_books, size: 30),
