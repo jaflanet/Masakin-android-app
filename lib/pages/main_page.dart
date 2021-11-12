@@ -12,17 +12,17 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreen extends State<MainScreen> {
   int selectedIndex = 0;
-  final screen = [HomeScreen(), HistoryScreen(), AccountScreen()];
+  final screen = [const HomeScreen(), const HistoryScreen(), const AccountScreen()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
-      backgroundColor: Color(0xFFFDFBF2),
-      color: Color(0xFFF5C901),
+      backgroundColor: const Color(0xFFFDFBF2),
+      color: const Color(0xFFF5C901),
       index: selectedIndex,
       key: NavbarKey.getKey(),
-      items: [
+      items: const [
         Icon(
           Icons.home,
           size: 30,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
-import 'pages/main_screen.dart';
+import 'package:masakin_app/pages/login_page.dart';
+import 'package:masakin_app/pages/register_page.dart';
+import 'pages/main_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,10 +16,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Masak.in',
       theme: ThemeData(
-      scaffoldBackgroundColor: Color(0xFFFDFBF2),
+      scaffoldBackgroundColor: const Color(0xFFFDFBF2),
       visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MainScreen(),
+      // home: MainPage(),
+      home: loginPage(),
+      routes: {
+        '/loginPage':(context)=>loginPage(),
+        '/register':(context)=>registerPage()
+      },
     );
   }
 }
