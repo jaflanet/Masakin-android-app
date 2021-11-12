@@ -49,14 +49,14 @@ flutter_native_splash:
     # splash screen to a png image.  This is useful for gradients. The image will be stretch to the
     # size of the app. Only one parameter can be used, color and background_image cannot both be set.
     #color: "#F4B100"
-    background_image: "assets/splash_bg.png"
+    background_image: "assets/images/splash_bg.png"
 
     # Optional parameters are listed below.  To enable a parameter, uncomment the line by removing
     # the leading # character.
 
     # The image parameter allows you to specify an image used in the splash screen.  It must be a
     # png file and should be sized for 4x pixel density.
-    image: assets/splash_4.png
+    image: assets/images/splash_4.png
 
     # The color_dark, background_image_dark, and image_dark are parameters that set the background
     # and image when the device is in dark mode. If they are not specified, the app will use the
@@ -127,7 +127,7 @@ flutter:
     uses-material-design: true
 
     assets:
-        - assets/
+        - assets/images/
 
     # To add assets to your application, add an assets section, like this:
     # assets:
@@ -145,17 +145,17 @@ flutter:
     # "family" key with the font family name, and a "fonts" key with a
     # list giving the asset and other descriptors for the font. For
     # example:
-    # fonts:
-    #   - family: Schyler
-    #     fonts:
-    #       - asset: fonts/Schyler-Regular.ttf
-    #       - asset: fonts/Schyler-Italic.ttf
-    #         style: italic
-    #   - family: Trajan Pro
-    #     fonts:
-    #       - asset: fonts/TrajanPro.ttf
-    #       - asset: fonts/TrajanPro_Bold.ttf
-    #         weight: 700
+    fonts:
+        - family: Montserrat
+          fonts:
+              - asset: assets/fonts/Montserrat-Light.ttf
+                weight: 100
+              - asset: assets/fonts/Montserrat-Medium.ttf
+                weight: 500
+              - asset: assets/fonts/Montserrat-SemiBold.ttf
+                weight: 600
+              - asset: assets/fonts/Montserrat-Bold.ttf
+                weight: 700
     #
     # For details regarding fonts from package dependencies,
     # see https://flutter.dev/custom-fonts/#from-packages

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'pages/main_screen.dart';
+import 'pages/main_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,8 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Masak.in',
       theme: ThemeData(
-      scaffoldBackgroundColor: Color(0xFFFDFBF2),
-      visualDensity: VisualDensity.adaptivePlatformDensity,
+        scaffoldBackgroundColor: Color(0xFFFDFBF2),
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        fontFamily: 'Montserrat'
       ),
       home: MainScreen(),
     );

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class HistoryScreen extends StatefulWidget {
@@ -11,7 +13,12 @@ class _HistoryScreenState extends State<HistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-     child: Center(child: Text('history')),
-       );
+      child: Center(
+        child: Text(
+          'history',
+          style: TextStyle(fontWeight: FontWeight.w100),
+          ),
+        ),
+      );
   }
 }
