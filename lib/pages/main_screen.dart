@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:masakin_app/navbar_key.dart';
-import 'package:masakin_app/screen/account.dart';
-import 'package:masakin_app/screen/history.dart';
-import 'package:masakin_app/screen/home.dart';
+import 'package:masakin_app/pages/screen/account.dart';
+import 'package:masakin_app/pages/screen/history.dart';
+import 'package:masakin_app/pages/screen/home.dart';
 
 class MainScreen extends StatefulWidget {
   @override
