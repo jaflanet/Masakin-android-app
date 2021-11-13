@@ -5,28 +5,30 @@ import 'package:masakin_app/pages/screen/account.dart';
 import 'package:masakin_app/pages/screen/history.dart';
 import 'package:masakin_app/pages/screen/home.dart';
 
-class MainScreen extends StatefulWidget {
+class MainPage extends StatefulWidget {
   @override
-  _MainScreen createState() => _MainScreen();
+  _MainPage createState() => _MainPage();
 }
 
-class _MainScreen extends State<MainScreen> {
+class _MainPage extends State<MainPage> {
   int selectedIndex = 0;
   final screen = [HomeScreen(), HistoryScreen(), AccountScreen()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFFDFBF2),
       appBar: AppBar(
-        title: Image.asset('assets/images/splash.png', fit: BoxFit.contain, height: 90,),
+        title: Image.asset(
+          'assets/images/splash.png',
+          fit: BoxFit.contain,
+          height: 90,
+        ),
         toolbarHeight: 110,
         backgroundColor: Color(0xFFF5C901),
         centerTitle: true,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30)
-          )
-        ),
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(30))),
       ),
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Color(0xFFFDFBF2),
@@ -50,8 +52,8 @@ class _MainScreen extends State<MainScreen> {
             selectedIndex = index;
           });
         },
-    ),
-    body: screen[selectedIndex],
+      ),
+      body: screen[selectedIndex],
     );
   }
 }

@@ -11,7 +11,7 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-     child: Center(child: Text('acccount')),
-       );
+      child: Center(child: Text('acccount')),
+    );
   }
 }
