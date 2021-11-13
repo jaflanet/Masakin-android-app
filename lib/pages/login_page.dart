@@ -16,7 +16,7 @@ class _loginPageState extends State<loginPage> {
     var doLogin = () {};
     return Scaffold(
       appBar: AppBar(
-        title: Text('L'),
+        title: Text('Login'),
       ),
       body: SingleChildScrollView(
         child: Container(
