@@ -8,16 +8,16 @@ class registerPage extends StatefulWidget {
 }
 
 class _registerPageState extends State<registerPage> {
-  final formKey = GlobalKey<FormFieldState>();
+  // final formKey = GlobalKey<FormFieldState>();
   String? _email, _password;
 
   @override
   Widget build(BuildContext context) {
     var doRegister = () {
-      print('registered');
+      // print('registered');
 
-      final form? = formKey.currentState;
-      form.save();
+      // final form? = formKey.currentState;
+      // form.save();
     };
 
     return Scaffold(
@@ -28,7 +28,7 @@ class _registerPageState extends State<registerPage> {
         child: Container(
           padding: const EdgeInsets.all(40.0),
           child: Form(
-            key: formKey,
+            // key: formKey,
             child: Column(
               children: [
                 const SizedBox(

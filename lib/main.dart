@@ -19,11 +19,12 @@ class MyApp extends StatelessWidget {
       scaffoldBackgroundColor: const Color(0xFFFDFBF2),
       visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      // home: MainPage(),
+      // home: MainScreen(),
       home: loginPage(),
       routes: {
         '/loginPage':(context)=>loginPage(),
-        '/register':(context)=>registerPage()
+        '/register':(context)=>registerPage(),
+        '/home':(context)=>MainScreen()
       },
     );
   }

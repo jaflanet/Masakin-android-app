@@ -51,7 +51,7 @@ class _loginPageState extends State<loginPage> {
                 const SizedBox(
                   height: 20.0,
                 ),
-                TextButton(onPressed: doLogin, child: const Text("login")),
+                TextButton(onPressed: (){Navigator.pushReplacementNamed(context, '/home');}, child: const Text("login")),
                 TextButton(
                   child: const Text("register"), 
                 onPressed: (){
