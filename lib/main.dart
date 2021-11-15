@@ -16,18 +16,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Masak.in',
       theme: ThemeData(
-      scaffoldBackgroundColor: const Color(0xFFFDFBF2),
-      visualDensity: VisualDensity.adaptivePlatformDensity,
+        scaffoldBackgroundColor: const Color(0xFFFDFBF2),
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // home: MainScreen(),
       home: loginPage(),
       routes: {
-        '/loginPage':(context)=>loginPage(),
-        '/register':(context)=>registerPage(),
-        '/home':(context)=>MainScreen()
+        '/loginPage': (context) => loginPage(),
+        '/register': (context) => registerPage(),
+        '/home': (context) => MainPage()
       },
     );
   }
 }
-
-
