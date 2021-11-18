@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:masakin_app/pages/login_page.dart';
+import 'package:masakin_app/pages/models/restaurant.dart';
 import 'package:masakin_app/pages/register_page.dart';
+import 'package:masakin_app/pages/screen/section/restaurantMenu.dart';
 import 'pages/main_page.dart';
 
 void main() {
@@ -20,12 +22,12 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // home: MainScreen(),
-      home: loginPage(),
-      routes: {
-        '/loginPage': (context) => loginPage(),
-        '/register': (context) => registerPage(),
-        '/home': (context) => MainPage()
-      },
+      home: RestaurantInfo(),
+      // routes: {
+      //   '/loginPage': (context) => loginPage(),
+      //   '/register': (context) => registerPage(),
+      //   '/home': (context) => MainPage()
+      // },
     );
   }
 }
