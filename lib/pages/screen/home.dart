@@ -186,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                   Text(
-                                    'Rating: 4.2',
+                                    'Rating: 4',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 12,

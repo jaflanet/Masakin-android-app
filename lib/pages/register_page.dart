@@ -29,111 +29,125 @@ class _registerPageState extends State<registerPage> {
     //   // form.save();
     // };
 
-    return Scaffold(
-        
-        // appBar: AppBar(
-        //   title: Text('Register'),
-        // ),
-        body: new SingleChildScrollView(
-            child: Container(
-                child: Column(
-          children: <Widget>[
-            Align(
-                alignment: Alignment.topRight,
-                child: Image.asset(
-                  "assets/images/register.png",
-                  scale: 1.3,
-                )),
-            Container(
-                child: Container(
-                    padding: EdgeInsets.only(left: 75.0, right: 75.0),
-                    child: Form(
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        key: formKey,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const SizedBox(height: 17),
-                            const Text(
-                              'Sign up',
-                              style: TextStyle(
-                                  fontSize: 28,
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            const SizedBox(height: 30),
-                            buildName(),
-                            const SizedBox(height: 23.0),
-                            buildEmail(),
-                            const SizedBox(height: 23),
-                            buildPassword(),
-                            const SizedBox(height: 23),
-                            buildPhoneNumber(),
-                            const SizedBox(height: 35),
-                            buildButtonSignUp(),
-                          ],
-                        ))))
-          ],
-        )))
-        // body: SingleChildScrollView(
-        //   child: Stack(children: <Widget>[
-        //     Positioned(
-        //       top: 0,
-        //       right: 0,
-        //       child: Image.asset(
-        //         "assets/images/login.png",
-        //         scale: 1.5,
-        //       ),
-        //     ),
-        //     Positioned(
-        //       top: 15,
-        //       right: 15,
-        //       child: Image.asset(
-        //         "assets/images/splash.png",
-        //         scale: 13,
-        //       ),
-        //     ),
-        //   ]
-        // child: Container(
-        //   padding: const EdgeInsets.all(40.0),
-        //   child: Form(
-        //     // key: formKey,
-        //     child: Column(
-        //       children: [
-        //         const SizedBox(
-        //           height: 15.0,
-        //         ),
-        //         const Text("Email"),
-        //         const SizedBox(
-        //           height: 5.0,
-        //         ),
-        //         TextFormField(
-        //           autofocus: false,
-        //           // validator: validateEmail(value),
-        //           onSaved: (value) => _email = value,
-        //         ),
-        //         const SizedBox(
-        //           height: 20.0,
-        //         ),
-        //         const Text("Password"),
-        //         const SizedBox(
-        //           height: 5.0,
-        //         ),
-        //         TextFormField(
-        //           autofocus: false,
-        //           // validator: validateEmail(value),
-        //           onSaved: (value) => _password = value,
-        //         ),
-        //         const SizedBox(
-        //           height: 20.0,
-        //         ),
-        //         TextButton(
-        //             onPressed: doRegister, child: const Text("register")),
-        //       ],
-        //     ),
-        //   ),
-        // ),
-        );
+    return Padding(
+      padding: const EdgeInsets.only(top: 32),
+      child: Scaffold(
+
+          // appBar: AppBar(
+          //   title: Text('Register'),
+          // ),
+          body: new SingleChildScrollView(
+              child: Container(
+                  child: Column(
+        children: <Widget>[
+          Align(
+              alignment: Alignment.topRight,
+              child: Image.asset(
+                "assets/images/register.png",
+                scale: 1.3,
+              )),
+          Container(
+              child: Container(
+                  padding: EdgeInsets.only(left: 75.0, right: 75.0),
+                  child: Form(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      key: formKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const SizedBox(height: 17),
+                          Row(
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  Navigator.pushReplacementNamed(
+                                      context, '/loginPage');
+                                },
+                                icon: Icon(Icons.arrow_back),
+                              ),
+                              const Text(
+                                'Sign up',
+                                style: TextStyle(
+                                    fontSize: 28,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 30),
+                          buildName(),
+                          const SizedBox(height: 23.0),
+                          buildEmail(),
+                          const SizedBox(height: 23),
+                          buildPassword(),
+                          const SizedBox(height: 23),
+                          buildPhoneNumber(),
+                          const SizedBox(height: 35),
+                          buildButtonSignUp(),
+                        ],
+                      ))))
+        ],
+      )))
+          // body: SingleChildScrollView(
+          //   child: Stack(children: <Widget>[
+          //     Positioned(
+          //       top: 0,
+          //       right: 0,
+          //       child: Image.asset(
+          //         "assets/images/login.png",
+          //         scale: 1.5,
+          //       ),
+          //     ),
+          //     Positioned(
+          //       top: 15,
+          //       right: 15,
+          //       child: Image.asset(
+          //         "assets/images/splash.png",
+          //         scale: 13,
+          //       ),
+          //     ),
+          //   ]
+          // child: Container(
+          //   padding: const EdgeInsets.all(40.0),
+          //   child: Form(
+          //     // key: formKey,
+          //     child: Column(
+          //       children: [
+          //         const SizedBox(
+          //           height: 15.0,
+          //         ),
+          //         const Text("Email"),
+          //         const SizedBox(
+          //           height: 5.0,
+          //         ),
+          //         TextFormField(
+          //           autofocus: false,
+          //           // validator: validateEmail(value),
+          //           onSaved: (value) => _email = value,
+          //         ),
+          //         const SizedBox(
+          //           height: 20.0,
+          //         ),
+          //         const Text("Password"),
+          //         const SizedBox(
+          //           height: 5.0,
+          //         ),
+          //         TextFormField(
+          //           autofocus: false,
+          //           // validator: validateEmail(value),
+          //           onSaved: (value) => _password = value,
+          //         ),
+          //         const SizedBox(
+          //           height: 20.0,
+          //         ),
+          //         TextButton(
+          //             onPressed: doRegister, child: const Text("register")),
+          //       ],
+          //     ),
+          //   ),
+          // ),
+          ),
+    );
     // ));
   }
 
