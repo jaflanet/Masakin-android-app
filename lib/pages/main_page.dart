@@ -18,14 +18,22 @@ class _MainPage extends State<MainPage> {
     const HistoryScreen(),
     const AccountScreen()
   ];
+  late double toolbarHeight;
 
   @override
   Widget build(BuildContext context) {
+    if (selectedIndex == 2) {
+      toolbarHeight = 300;
+    } else {
+      toolbarHeight = 110;
+    }
     return Scaffold(
         backgroundColor: Color(0xFFFDFBF2),
-        appBar: Header(),
+        appBar: Header(
+          toolbarHeight: toolbarHeight,
+        ),
         bottomNavigationBar: CurvedNavigationBar(
-          height: 70,
+          height: 65,
           backgroundColor: Color(0xFFFDFBF2),
           color: Color(0xFFF5C901),
           animationDuration: Duration(milliseconds: 400),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget implements PreferredSizeWidget {
-  const Header({Key? key}) : super(key: key);
+  const Header({Key? key, required this.toolbarHeight}) : super(key: key);
+
+  final double toolbarHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -20,5 +22,5 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(110);
+  Size get preferredSize => Size.fromHeight(toolbarHeight);
 }
