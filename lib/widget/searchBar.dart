@@ -54,7 +54,9 @@ class _SearchBarState extends State<SearchBar> {
                   bottomRight: Radius.circular(32),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(14, 14, 12, 14),
+                  padding: _inactive
+                      ? EdgeInsets.fromLTRB(14, 14, 12, 14)
+                      : EdgeInsets.fromLTRB(14, 12, 12, 14),
                   child: Icon(
                     _inactive ? Icons.search : Icons.close,
                     color: Color(0xFFF5C901),
