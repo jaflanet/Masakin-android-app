@@ -6,6 +6,7 @@ class RestaurantInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double c_width = MediaQuery.of(context).size.width*0.7;
     return Scaffold(
         backgroundColor: Color(0xFFFDFBF2),
         body: SingleChildScrollView(
@@ -18,7 +19,7 @@ class RestaurantInfo extends StatelessWidget {
                     color: Color(0xFFFEF7D8),
                     boxShadow: [
                       BoxShadow(
-                          color: Colors.black.withOpacity(0.5),
+                          color: Colors.black.withOpacity(0.2),
                           spreadRadius: 0.5,
                           blurRadius: 7,
                           offset: Offset(0, 3))
@@ -28,21 +29,27 @@ class RestaurantInfo extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            resto.name,
-                            style: TextStyle(
-                                fontSize: 25, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            children: [Text(resto.location)],
-                          )
-                        ])
+                    Padding(
+                      padding: const EdgeInsets.all(14.0),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              resto.name,
+                              style: TextStyle(
+                                  fontSize: 25, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [Icon(
+              Icons.location_on_outlined,
+              size: 20,
+            ),Container( width: c_width,child: Text(resto.location, textAlign: TextAlign.left))],
+                            )
+                          ]),
+                    )
                   ],
                 )
               ],
