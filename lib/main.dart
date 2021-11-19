@@ -25,13 +25,13 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFFDFBF2),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      // home: MainPage(),
-      home: RestaurantInfo(),
-      // routes: {
-      //   '/loginPage': (context) => loginPage(),
-      //   '/register': (context) => registerPage(),
-      //   '/home': (context) => MainPage()
-      // },
+      home: loginPage(),
+      //home: RestaurantInfo(),
+      routes: {
+        '/loginPage': (context) => loginPage(),
+        '/registerPage': (context) => registerPage(),
+        '/mainPage': (context) => MainPage()
+      },
     );
   }
 }

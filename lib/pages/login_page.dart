@@ -91,78 +91,6 @@ class _loginPageState extends State<loginPage> {
                       const SizedBox(height: 10),
                       buildButtonSignUp(),
                     ],
-<<<<<<< HEAD
-                  )
-                  // child: Container(
-                  //     padding: EdgeInsets.only(left: 90.0, right: 90.0),
-                  //     child: Column(
-                  //       children: [
-                  //         const Text('Login'),
-                  //         buildEmail(),
-                  //         const SizedBox(height: 23.0),
-                  //         buildPassword(),
-                  //         const SizedBox(height: 23),
-                  //         buildButtonLogin(),
-                  //         const SizedBox(height: 25),
-                  //         const Text('Didnt have account?'),
-                  //         const SizedBox(height: 10),
-                  //         buildButtonSignUp(), 
-                  //       ],
-                  //     ))
-                  // appBar: AppBar(
-                  //   title: Text('Login'),
-                  // ),
-                  // body: SingleChildScrollView(
-                  //   child: Container(
-                  //     padding: const EdgeInsets.all(40.0),
-                  //     child: Form(
-                  //       child: Column(
-                  //         children: [
-                  //           const SizedBox(
-                  //             height: 15.0,
-                  //           ),
-                  //           const Text("Email"),
-                  //           const SizedBox(
-                  //             height: 5.0,
-                  //           ),
-                  //           TextFormField(
-                  //             autofocus: false,
-                  //             // validator: validateEmail(value),
-                  //             onSaved: (value) => _email = value,
-                  //           ),
-                  //           const SizedBox(
-                  //             height: 20.0,
-                  //           ),
-                  //           const Text("Password"),
-                  //           const SizedBox(
-                  //             height: 5.0,
-                  //           ),
-                  //           TextFormField(
-                  //             autofocus: false,
-                  //             // validator: validateEmail(value),
-                  //             onSaved: (value) => _password = value,
-                  //           ),
-                  //           const SizedBox(
-                  //             height: 20.0,
-                  //           ),
-                  //           TextButton(
-                  //               onPressed: () {
-                  //                 Navigator.pushReplacementNamed(context, '/home');
-                  //               },
-                  //               child: const Text("login")),
-                  //           TextButton(
-                  //             child: const Text("register"),
-                  //             onPressed: () {
-                  //               Navigator.pushReplacementNamed(context, '/register');
-                  //             },
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  ))),
-=======
                   ),
                 ),
               ],
@@ -238,7 +166,6 @@ class _loginPageState extends State<loginPage> {
           ),
         ),
       ),
->>>>>>> 72c81b4d6b99d4744e65cf6860246197c166aa06
     );
   }
 
