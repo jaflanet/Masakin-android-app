@@ -35,9 +35,10 @@ class _SearchBarState extends State<SearchBar> {
                     decoration: InputDecoration(
                         hintText: 'What do you want to eat today ?',
                         hintStyle: TextStyle(
-                            color: Colors.grey[600],
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14),
+                          color: Colors.grey[600],
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                        ),
                         border: InputBorder.none),
                   )
                 : null,
