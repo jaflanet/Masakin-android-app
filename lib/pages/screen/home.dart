@@ -49,15 +49,14 @@ class _HomeScreenState extends State<HomeScreen> {
               'Discover',
               style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
             ),
-            SizedBox(height: 15),
+            SizedBox(height: 7),
             CarouselSlider(
               options: CarouselOptions(
                   height: 150,
                   enlargeCenterPage: true,
                   autoPlay: true,
                   autoPlayCurve: Curves.fastOutSlowIn,
-                  enableInfiniteScroll: true,
-                  autoPlayAnimationDuration: Duration(seconds: 1),
+                  autoPlayAnimationDuration: Duration(seconds: 2),
                   viewportFraction: 1),
               items: [
                 ClipRRect(
@@ -69,16 +68,139 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 15),
             Container(
-              height: 150,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(32),
-                border: Border.all(
-                  color: Color(0xFFF5C901),
+                height: 180,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(18),
+                  border: Border.all(color: Color(0xFFF5C901), width: 3),
                 ),
-              ),
-            ),
+                child: Column(
+                  children: [
+                    SizedBox(height: 5),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 5, 0, 5),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.location_on_outlined,
+                            size: 30,
+                          ),
+                          SizedBox(width: 10),
+                          Text(
+                            'Available Restaurant',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 22,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(22),
+                              color: Colors.amber,
+                            ),
+                            margin: EdgeInsets.fromLTRB(15, 10, 15, 15),
+                            height: 120,
+                            width: 120,
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Restoran 1',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Rating: 4.2',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(22),
+                              color: Colors.red,
+                            ),
+                            margin: EdgeInsets.fromLTRB(15, 10, 15, 15),
+                            height: 120,
+                            width: 120,
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Restoran 2',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Rating: 4.2',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(22),
+                              color: Colors.orange,
+                            ),
+                            margin: EdgeInsets.fromLTRB(15, 10, 15, 15),
+                            height: 120,
+                            width: 120,
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Restoran 3',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Rating: 4',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )),
           ],
         ),
       ),
