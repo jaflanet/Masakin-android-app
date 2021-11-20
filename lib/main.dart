@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:masakin_app/pages/login_page.dart';
-import 'package:masakin_app/pages/models/restaurant.dart';
+import 'package:masakin_app/models/restaurant.dart';
 import 'package:masakin_app/pages/register_page.dart';
 import 'package:masakin_app/pages/screen/section/restaurantMenu.dart';
 import 'pages/main_page.dart';
