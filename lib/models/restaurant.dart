@@ -1,4 +1,5 @@
 import 'food.dart';
+import 'dart:ui';
 
 class Restaurant {
   String name;
@@ -15,4 +16,12 @@ class Restaurant {
         4.7,
         'halal');
   }
+
+  // factory Restaurant.fromJson(Map<String, dynamic> json){
+  //   return Restaurant(
+  //     name: json['name'],
+  //     location: json['location'],
+  //     rating: json['rating'],
+  //   )
+  // }
 }

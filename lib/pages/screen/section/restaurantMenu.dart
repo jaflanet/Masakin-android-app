@@ -22,3 +22,22 @@ class restaurantMenu extends StatelessWidget {
     )));
   }
 }
+
+//   Future<List<Restaurant>> fetchRestaurants() async {
+//     final response = await http
+//         .get(Uri.parse('https://masakin-rpl.herokuapp.com/restaurant'));
+
+//     if (response.statusCode == 200) {
+//       return compute(parseSubjects, response.body);
+//     } else {
+//       // If the server did not return a 200 OK response,
+//       // then throw an exception.
+//       throw Exception('Failed to load Subjects');
+//     }
+//   }
+
+//   List<Restaurant> parseSubjects(String responseBody) {
+//     final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
+//     return parsed.map<Restaurant>((json) => Restaurant.fromJson(json)).toList();
+//   }
+// }
