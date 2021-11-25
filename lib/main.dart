@@ -4,7 +4,7 @@ import 'package:masakin_app/pages/adminScreen/addRestaurant.dart';
 import 'package:masakin_app/pages/login_page.dart';
 import 'package:masakin_app/models/restaurant.dart';
 import 'package:masakin_app/pages/register_page.dart';
-import 'package:masakin_app/pages/screen/restaurantMenu.dart';
+import 'package:masakin_app/pages/screen/section/restaurantMenu.dart';
 import 'package:masakin_app/pages/screen/section/restaurantInfo.dart';
 import 'pages/main_page.dart';
 import 'package:flutter/services.dart';
@@ -28,15 +28,16 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFFDFBF2),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      // home: loginPage(),
+      //home: loginPage(),
       home: restaurantMenu(),
-      // home: addRestaurant(),
+      //home: addRestaurant(),
+      // home: MainPage(),
       // routes: {
       //   '/loginPage': (context) => loginPage(),
       //   '/registerPage': (context) => registerPage(),
       //   '/mainPage': (context) => MainPage(),
       //   '/addMenu': (context) => addMenu(),
-      //   '/addResto': (context) => addRestaurant()
+      //   '/addResto': (context) => addRestaurant(),
       // },
     );
   }
