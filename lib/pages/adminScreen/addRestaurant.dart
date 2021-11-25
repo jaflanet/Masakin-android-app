@@ -123,7 +123,7 @@ class addRestaurant extends StatelessWidget {
         ),
       );
 
-  Widget buildButtonSubmit(BuildContext context) => TextButton(
+  Widget buildButtonSubmit() => TextButton(
       onPressed: () {
         Navigator.pushReplacementNamed(context, '/addMenu');
       },
