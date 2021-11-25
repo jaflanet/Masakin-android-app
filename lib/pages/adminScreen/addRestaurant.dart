@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
-class addRestaurant extends StatelessWidget {
-  const addRestaurant({Key? key}) : super(key: key);
-  
+class addRestaurant extends StatefulWidget {
 
   @override
+  _addRestaurantState createState() => _addRestaurantState();
+}
+
+class _addRestaurantState extends State<addRestaurant> {
+ @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
@@ -138,3 +141,4 @@ class addRestaurant extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(37)),
       ));
 }
+
