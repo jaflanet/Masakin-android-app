@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
-class addMenu extends StatelessWidget {
-  const addMenu({Key? key}) : super(key: key);
+class addMenu extends StatefulWidget {
+  const addMenu({ Key? key }) : super(key: key);
 
+  @override
+  _addMenuState createState() => _addMenuState();
+}
+
+class _addMenuState extends State<addMenu> {
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -198,3 +204,4 @@ class addMenu extends StatelessWidget {
         ),
       );
 }
+
