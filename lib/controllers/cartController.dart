@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:masakin_app/models/food.dart';
+import '../../widget/widgets.dart';
 
 class cartController extends GetxController {
   var _foods = {}.obs;

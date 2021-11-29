@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:masakin_app/pages/screen/section/foodCart.dart';
+import '../../widget/widgets.dart';
 import 'package:masakin_app/navbar_key.dart';
 import 'package:masakin_app/pages/screen/account.dart';
 import 'package:masakin_app/pages/screen/menu.dart';
@@ -13,8 +15,10 @@ class MainPage extends StatefulWidget {
 class _MainPage extends State<MainPage> {
   int selectedIndex = 0;
   final screen = [
+    // const MenuScreen(),
     const HomeScreen(),
-    const MenuScreen(),
+     DataFromAPI(),
+     foodCart(),
     const AccountScreen()
   ];
   late double toolbarHeight;
@@ -42,6 +46,7 @@ class _MainPage extends State<MainPage> {
                 size: 30,
               ),
               Icon(Icons.library_books, size: 30),
+              Icon(Icons.add_shopping_cart, size: 30),
               Icon(
                 Icons.person,
                 size: 30,

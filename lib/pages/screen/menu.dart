@@ -17,7 +17,7 @@ class _MenuScreenState extends State<MenuScreen> {
       child:Scaffold(
           body: Column(
             children: [
-              foodList(),
+              DataFromAPI (),
               ElevatedButton(onPressed: 
               ()=> Get.to(()=>foodCart()), 
               child: Text('cart'),
