@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:masakin_app/models/restaurant.dart';
-import 'package:masakin_app/pages/screen/section/foodListView.dart';
 import 'package:masakin_app/pages/screen/section/restaurantInfo.dart';
 import 'package:masakin_app/widget/customAppBar.dart';
 
@@ -17,7 +16,7 @@ class restaurantMenu extends StatelessWidget {
       children: [
         customAppBar(Icons.arrow_back_ios_new_outlined),
         restaurantInfo(),
-        FoodList(restaurant)
+        // FoodList(restaurant)
       ],
     )));
   }
