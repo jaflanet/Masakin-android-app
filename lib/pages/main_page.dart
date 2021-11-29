@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:masakin_app/pages/screen/section/foodCart.dart';
+import 'package:masakin_app/pages/screen/foodCart.dart';
 import '../../widget/widgets.dart';
 import 'package:masakin_app/navbar_key.dart';
 import 'package:masakin_app/pages/screen/account.dart';
-import 'package:masakin_app/pages/screen/menu.dart';
 import 'package:masakin_app/pages/screen/home.dart';
 
 class MainPage extends StatefulWidget {

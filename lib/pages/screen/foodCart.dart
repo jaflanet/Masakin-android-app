@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:masakin_app/widget/cartTotal.dart';
-import '../../../widget/widgets.dart';
+import '../../widget/widgets.dart';
 
 class foodCart extends StatelessWidget {
   const foodCart({ Key? key }) : super(key: key);

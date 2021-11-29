@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:masakin_app/pages/screen/section/foodCart.dart';
+import 'package:masakin_app/pages/screen/foodCart.dart';
 import '../../widget/widgets.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -18,10 +18,6 @@ class _MenuScreenState extends State<MenuScreen> {
           body: Column(
             children: [
               DataFromAPI (),
-              ElevatedButton(onPressed: 
-              ()=> Get.to(()=>foodCart()), 
-              child: Text('cart'),
-              ),
             ],
           )
     )
