@@ -28,9 +28,8 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFFDFBF2),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-<<<<<<< HEAD
       //home: loginPage(),
-      home: restaurantMenu(),
+      home: DataFromAPI(),
       //home: addRestaurant(),
       // home: MainPage(),
       // routes: {
@@ -40,11 +39,10 @@ class MyApp extends StatelessWidget {
       //   '/addMenu': (context) => addMenu(),
       //   '/addResto': (context) => addRestaurant(),
       // },
-=======
       // home: MainPage(),
       // home: loginPage(),
       // home: RestaurantInfo(),
-      home: addRestaurant(),
+      // home: addRestaurant(),
       routes: {
         '/loginPage': (context) => loginPage(),
         '/registerPage': (context) => registerPage(),
@@ -52,7 +50,6 @@ class MyApp extends StatelessWidget {
         '/addMenu': (context) => addMenu(),
         '/addResto': (context) => addRestaurant(),
       },
->>>>>>> 129f34ff4a4cd7fc6df346fb793c6b146e5c0648
     );
   }
 }

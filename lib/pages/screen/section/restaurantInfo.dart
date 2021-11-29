@@ -11,15 +11,16 @@ class restaurantInfo extends StatelessWidget {
       margin: EdgeInsets.only(top: 20),
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Container(
-        // decoration:
-        //     BoxDecoration(borderRadius: BorderRadius.circular(30), color:Colors.white.withOpacity(0.9),
-        //     boxShadow: [
-        //      BoxShadow(
-        //      color: Colors.black.withOpacity(0.2),
-        //       spreadRadius: 0.5,
-        //       blurRadius: 7,
-        //      offset: Offset(0, 3))
-        // ]),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            color: Colors.white.withOpacity(0.9),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  spreadRadius: 0.5,
+                  blurRadius: 7,
+                  offset: Offset(0, 3))
+            ]),
         child: Column(
           children: [
             Row(
