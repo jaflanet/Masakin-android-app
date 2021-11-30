@@ -8,11 +8,9 @@ import 'package:masakin_app/pages/screen/section/restaurantMenu.dart';
 import 'pages/main_page.dart';
 import 'package:flutter/services.dart';
 
-
 void main() {
   runApp(GetMaterialApp(home: MyApp()));
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -29,12 +27,6 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFFDFBF2),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-<<<<<<< HEAD
-      home: MainPage(),
-      // home: loginPage(),
-      // home: RestaurantInfo(),
-      // home: loginPage(),
-=======
       //home: loginPage(),
       // home: DataFromAPI(),
       //home: addRestaurant(),
@@ -50,7 +42,6 @@ class MyApp extends StatelessWidget {
       // home: loginPage(),
       // home: RestaurantInfo(),
       // home: addRestaurant(),
->>>>>>> 4b8d1e47169cf3ab0f4454d5b4fd81644be7e16a
       routes: {
         '/loginPage': (context) => loginPage(),
         '/registerPage': (context) => registerPage(),
