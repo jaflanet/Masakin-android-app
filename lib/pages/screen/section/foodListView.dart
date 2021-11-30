@@ -15,9 +15,9 @@ class FoodList extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 25),
       child: PageView(
         children: [
-          ListView(
-              foodItem()
-              )
+          // ListView(
+          //     foodItem()
+          //     )
         ],
       ),
     );
