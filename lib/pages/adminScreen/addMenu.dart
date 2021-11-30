@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 class addMenu extends StatefulWidget {
-  const addMenu({ Key? key }) : super(key: key);
+  const addMenu({Key? key}) : super(key: key);
 
   @override
   _addMenuState createState() => _addMenuState();
 }
 
 class _addMenuState extends State<addMenu> {
-  
+  String valType = "select";
+  var items = ["HALAL", "NOT-HALAL"];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -38,11 +40,12 @@ class _addMenuState extends State<addMenu> {
                   SizedBox(height: 20),
                   buildDescription(),
                   SizedBox(height: 20),
-                  buildType(),
+                  // buildType(),
                   SizedBox(height: 20),
                   buildPhoto(),
                   SizedBox(height: 30),
                   buildButtonSubmit(),
+                  buildButtonBack(),
                 ]
                     // child: TextButton(
                     //     child: const Text("add menu"),
@@ -62,6 +65,21 @@ class _addMenuState extends State<addMenu> {
   Widget buildButtonSubmit() => TextButton(
       onPressed: () {
         // Navigator.pushReplacementNamed(context, '/addMenu');
+      },
+      child: Text('Submit',
+          style: TextStyle(
+              fontSize: 15, color: Colors.white, fontFamily: 'Montserrat')),
+      style: TextButton.styleFrom(
+        elevation: 6,
+        shadowColor: Colors.black,
+        padding: EdgeInsets.fromLTRB(30.0, 5.0, 30.0, 5.0),
+        backgroundColor: Color(0xFFFF8023),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(37)),
+      ));
+
+  Widget buildButtonBack() => TextButton(
+      onPressed: () {
+        Navigator.pushReplacementNamed(context, '/addResto');
       },
       child: Text('Submit',
           style: TextStyle(
@@ -154,30 +172,45 @@ class _addMenuState extends State<addMenu> {
         ),
       );
 
-  Widget buildType() => Container(
-        child: TextFormField(
-          decoration: InputDecoration(
-            contentPadding: EdgeInsets.only(
-              right: 20,
-              left: 20,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(27),
-              borderSide: BorderSide(),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(27),
-              borderSide: BorderSide(),
-            ),
-            labelText: 'TYPE NANTI DROPDOWN',
-            labelStyle: TextStyle(
-              color: Colors.black,
-              fontSize: 14,
-              fontFamily: 'Montserrat',
-            ),
-          ),
-        ),
-      );
+  // Widget buildType() => Container(
+  //       child: TextFormField(
+  //         decoration: InputDecoration(
+  //           contentPadding: EdgeInsets.only(
+  //             right: 20,
+  //             left: 20,
+  //           ),
+  //           enabledBorder: OutlineInputBorder(
+  //             borderRadius: BorderRadius.circular(27),
+  //             borderSide: BorderSide(),
+  //           ),
+  //           focusedBorder: OutlineInputBorder(
+  //             borderRadius: BorderRadius.circular(27),
+  //             borderSide: BorderSide(),
+  //           ),
+  //           labelText: 'TYPE NANTI DROPDOWN',
+  //           labelStyle: TextStyle(
+  //             color: Colors.black,
+  //             fontSize: 14,
+  //             fontFamily: 'Montserrat',
+  //           ),
+  //         ),
+  //       ),
+  //     );
+
+  // Widget buildType() => DropdownButton(
+  //   hint: Text("Select type"),
+  //   value: valType,
+  //   icon: Icon(Icons.keyboard_arrow_down),
+  //   items: items.map((String items){
+  //     return DropdownMenuItem(child: Text(items),
+  //     value: items,);
+  //   }).toList(),
+  //   onChanged: (String newValue){
+  //     setState((){
+  //       valType = newValue;
+  //     });
+  //   },
+  // )
 
   Widget buildPhoto() => Container(
         child: TextFormField(
@@ -204,4 +237,3 @@ class _addMenuState extends State<addMenu> {
         ),
       );
 }
-

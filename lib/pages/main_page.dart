@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:masakin_app/pages/screen/foodCart.dart';
+import '../../widget/widgets.dart';
 import 'package:masakin_app/navbar_key.dart';
 import 'package:masakin_app/pages/screen/account.dart';
-import 'package:masakin_app/pages/screen/history.dart';
 import 'package:masakin_app/pages/screen/home.dart';
 
 class MainPage extends StatefulWidget {
@@ -13,19 +14,21 @@ class MainPage extends StatefulWidget {
 class _MainPage extends State<MainPage> {
   int selectedIndex = 0;
   final screen = [
+    // const MenuScreen(),
     const HomeScreen(),
-    const HistoryScreen(),
+     DataFromAPI(),
+     foodCart(),
     const AccountScreen()
   ];
   late double toolbarHeight;
 
   @override
   Widget build(BuildContext context) {
-    if (selectedIndex == 2) {
-      toolbarHeight = 300;
-    } else {
-      toolbarHeight = 110;
-    }
+    // if (selectedIndex == 2) {
+    //   toolbarHeight = 300;
+    // } else {
+    //   toolbarHeight = 110;
+    // }
     return SafeArea(
       child: Scaffold(
           backgroundColor: Color(0xFFFDFBF2),
@@ -42,6 +45,7 @@ class _MainPage extends State<MainPage> {
                 size: 30,
               ),
               Icon(Icons.library_books, size: 30),
+              Icon(Icons.add_shopping_cart, size: 30),
               Icon(
                 Icons.person,
                 size: 30,
@@ -53,7 +57,7 @@ class _MainPage extends State<MainPage> {
               });
             },
           ),
-          body: SingleChildScrollView(
+          body: Container(
             child: screen[selectedIndex],
           )),
     );
