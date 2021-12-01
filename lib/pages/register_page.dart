@@ -63,7 +63,6 @@ class _registerPageState extends State<registerPage> {
                                   'Sign up',
                                   style: TextStyle(
                                     fontSize: 28,
-                                    fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -112,67 +111,8 @@ class _registerPageState extends State<registerPage> {
             ),
           ),
         ),
-        // body: SingleChildScrollView(
-        //   child: Stack(children: <Widget>[
-        //     Positioned(
-        //       top: 0,
-        //       right: 0,
-        //       child: Image.asset(
-        //         "assets/images/login.png",
-        //         scale: 1.5,
-        //       ),
-        //     ),
-        //     Positioned(
-        //       top: 15,
-        //       right: 15,
-        //       child: Image.asset(
-        //         "assets/images/splash.png",
-        //         scale: 13,
-        //       ),
-        //     ),
-        //   ]
-        // child: Container(
-        //   padding: const EdgeInsets.all(40.0),
-        //   child: Form(
-        //     // key: formKey,
-        //     child: Column(
-        //       children: [
-        //         const SizedBox(
-        //           height: 15.0,
-        //         ),
-        //         const Text("Email"),
-        //         const SizedBox(
-        //           height: 5.0,
-        //         ),
-        //         TextFormField(
-        //           autofocus: false,
-        //           // validator: validateEmail(value),
-        //           onSaved: (value) => _email = value,
-        //         ),
-        //         const SizedBox(
-        //           height: 20.0,
-        //         ),
-        //         const Text("Password"),
-        //         const SizedBox(
-        //           height: 5.0,
-        //         ),
-        //         TextFormField(
-        //           autofocus: false,
-        //           // validator: validateEmail(value),
-        //           onSaved: (value) => _password = value,
-        //         ),
-        //         const SizedBox(
-        //           height: 20.0,
-        //         ),
-        //         TextButton(
-        //             onPressed: doRegister, child: const Text("register")),
-        //       ],
-        //     ),
-        //   ),
-        // ),
       ),
     );
-    // ));
   }
 
   Widget buildName() => Container(
@@ -194,8 +134,8 @@ class _registerPageState extends State<registerPage> {
                 hintText: 'Name',
                 hintStyle: TextStyle(
                   color: Color(0xFF817E7E),
+                  fontWeight: FontWeight.w500,
                   fontSize: 16,
-                  fontFamily: 'Montserrat',
                 ),
                 border: InputBorder.none),
           )));
@@ -227,8 +167,8 @@ class _registerPageState extends State<registerPage> {
                 hintText: 'Email',
                 hintStyle: TextStyle(
                   color: Color(0xFF817E7E),
+                  fontWeight: FontWeight.w500,
                   fontSize: 16,
-                  fontFamily: 'Montserrat',
                 ),
                 border: InputBorder.none),
           ),
@@ -268,8 +208,8 @@ class _registerPageState extends State<registerPage> {
                 hintText: 'Password',
                 hintStyle: TextStyle(
                   color: Color(0xFF817E7E),
+                  fontWeight: FontWeight.w500,
                   fontSize: 16,
-                  fontFamily: 'Montserrat',
                 ),
                 border: InputBorder.none),
           ),
@@ -305,8 +245,8 @@ class _registerPageState extends State<registerPage> {
                 hintText: 'Phone Number',
                 hintStyle: TextStyle(
                   color: Color(0xFF817E7E),
+                  fontWeight: FontWeight.w500,
                   fontSize: 16,
-                  fontFamily: 'Montserrat',
                 ),
                 border: InputBorder.none),
           ),
@@ -322,7 +262,6 @@ class _registerPageState extends State<registerPage> {
           style: TextStyle(
             fontSize: 18,
             color: Colors.white,
-            fontFamily: 'Montserrat',
           ),
         ),
         style: TextButton.styleFrom(

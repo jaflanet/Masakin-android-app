@@ -33,8 +33,8 @@ class _MainPage extends State<MainPage> {
   final screen = [
     // const MenuScreen(),
     const HomeScreen(),
-     DataFromAPI(),
-     foodCart(),
+    DataFromAPI(),
+    foodCart(),
     const AccountScreen()
   ];
   late double toolbarHeight;
@@ -48,35 +48,36 @@ class _MainPage extends State<MainPage> {
     // }
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Color(0xFFFDFBF2),
+        bottomNavigationBar: CurvedNavigationBar(
+          height: 65,
           backgroundColor: Color(0xFFFDFBF2),
-          bottomNavigationBar: CurvedNavigationBar(
-            height: 65,
-            backgroundColor: Color(0xFFFDFBF2),
-            color: Color(0xFFF5C901),
-            animationDuration: Duration(milliseconds: 400),
-            index: selectedIndex,
-            key: NavbarKey.getKey(),
-            items: [
-              Icon(
-                Icons.home,
-                size: 30,
-              ),
-              Icon(Icons.library_books, size: 30),
-              Icon(Icons.add_shopping_cart, size: 30),
-              Icon(
-                Icons.person,
-                size: 30,
-              )
-            ],
-            onTap: (index) {
-              setState(() {
-                selectedIndex = index;
-              });
-            },
-          ),
-          body: Container(
-            child: screen[selectedIndex],
-          )),
+          color: Color(0xFFF5C901),
+          animationDuration: Duration(milliseconds: 400),
+          index: selectedIndex,
+          key: NavbarKey.getKey(),
+          items: [
+            Icon(
+              Icons.home,
+              size: 30,
+            ),
+            Icon(Icons.library_books, size: 30),
+            Icon(Icons.add_shopping_cart, size: 30),
+            Icon(
+              Icons.person,
+              size: 30,
+            )
+          ],
+          onTap: (index) {
+            setState(() {
+              selectedIndex = index;
+            });
+          },
+        ),
+        body: Container(
+          child: screen[selectedIndex],
+        ),
+      ),
     );
   }
 }

@@ -26,22 +26,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: const Color(0xFFFDFBF2),
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        fontFamily: 'Montserrat',
       ),
-      //home: loginPage(),
-      // home: DataFromAPI(),
-      //home: addRestaurant(),
       home: MainPage(),
-      // routes: {
-      //   '/loginPage': (context) => loginPage(),
-      //   '/registerPage': (context) => registerPage(),
-      //   '/mainPage': (context) => MainPage(),
-      //   '/addMenu': (context) => addMenu(),
-      //   '/addResto': (context) => addRestaurant(),
-      // },
-      // home: MainPage(),
-      // home: loginPage(),
-      // home: RestaurantInfo(),
-      // home: addRestaurant(),
       routes: {
         '/loginPage': (context) => loginPage(),
         '/registerPage': (context) => registerPage(),
