@@ -25,16 +25,6 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //   child: Center(
-      //     child: TextButton(
-      //       onPressed: () {
-      //         sharedPreferences.clear();
-      //         Navigator.pushReplacementNamed(context, '/loginPage');
-      //       },
-      //       child: Text('Logout'),
-      //     ),
-      //   ),
-      // );
       child: Stack(children: [
         Container(
           decoration: BoxDecoration(
