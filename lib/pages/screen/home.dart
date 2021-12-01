@@ -129,11 +129,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                Column(
-                  children: restaurantName
-                      .map((name) => Text('${name.name} - ${name.address}'))
-                      .toList(),
-                ),
+                // Column(
+                //   children: restaurantName
+                //       .map((name) => Text('${name.name} - ${name.address}'))
+                //       .toList(),
+                // ),
                 SizedBox(
                   height: 15,
                 ),
@@ -188,7 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 Text(
-                  'Rating: ${resto.rating.toString()}',
+                  'Rating:  ',
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 12,

@@ -56,7 +56,7 @@ class restaurantInfo extends StatelessWidget {
                                 size: 17,
                               ),
                               Text(
-                                '${resto.rating}',
+                                ' ',
                                 style: TextStyle(
                                     fontSize: 17,
                                     fontWeight: FontWeight.normal),
@@ -75,7 +75,7 @@ class restaurantInfo extends StatelessWidget {
                             ),
                             Container(
                                 width: c_width,
-                                child: Text(resto.location,
+                                child: Text('resto.location',
                                     textAlign: TextAlign.left))
                           ],
                         )
