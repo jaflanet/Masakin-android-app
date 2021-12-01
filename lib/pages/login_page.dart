@@ -109,7 +109,6 @@ class _loginPageState extends State<loginPage> {
                               'Log in',
                               style: TextStyle(
                                 fontSize: 28,
-                                fontFamily: 'Montserrat',
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -122,9 +121,14 @@ class _loginPageState extends State<loginPage> {
                       buildPassword(),
                       const SizedBox(height: 29),
                       buildButtonLogin(),
-                      const SizedBox(height: 40),
-                      const Text('Didnt have account?',
-                          style: TextStyle(fontFamily: 'Montserrat')),
+                      const SizedBox(height: 20),
+                      const Text(
+                        'Didn\'t have account?',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                        ),
+                      ),
                       const SizedBox(height: 10),
                       buildButtonSignUp(),
                     ],
@@ -148,9 +152,10 @@ class _loginPageState extends State<loginPage> {
               decoration: InputDecoration(
                   hintText: 'Email',
                   hintStyle: TextStyle(
-                      color: Color(0xFF817E7E),
-                      fontSize: 16,
-                      fontFamily: 'Montserrat'),
+                    color: Color(0xFF817E7E),
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
+                  ),
                   border: InputBorder.none),
             )),
         decoration: BoxDecoration(
@@ -176,9 +181,10 @@ class _loginPageState extends State<loginPage> {
             decoration: InputDecoration(
                 hintText: 'Password',
                 hintStyle: TextStyle(
-                    color: Color(0xFF817E7E),
-                    fontSize: 16,
-                    fontFamily: 'Montserrat'),
+                  color: Color(0xFF817E7E),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                ),
                 border: InputBorder.none),
           )));
 
@@ -188,7 +194,9 @@ class _loginPageState extends State<loginPage> {
       },
       child: Text('Log in',
           style: TextStyle(
-              fontSize: 18, color: Colors.black, fontFamily: 'Montserrat')),
+            fontSize: 18,
+            color: Colors.black,
+          )),
       style: TextButton.styleFrom(
         elevation: 6,
         shadowColor: Colors.black,
@@ -203,7 +211,9 @@ class _loginPageState extends State<loginPage> {
       },
       child: Text('Sign up',
           style: TextStyle(
-              fontSize: 18, color: Colors.white, fontFamily: 'Montserrat')),
+            fontSize: 18,
+            color: Colors.white,
+          )),
       style: TextButton.styleFrom(
         elevation: 6,
         shadowColor: Colors.black,
