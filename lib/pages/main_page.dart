@@ -5,6 +5,9 @@ import '../../widget/widgets.dart';
 import 'package:masakin_app/navbar_key.dart';
 import 'package:masakin_app/pages/screen/account.dart';
 import 'package:masakin_app/pages/screen/home.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+late String finalEmail;
 
 class MainPage extends StatefulWidget {
   @override
@@ -12,6 +15,20 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPage extends State<MainPage> {
+  @override
+  void initState() {
+    super.initState();
+    checkLoginStatus();
+  }
+
+  checkLoginStatus() async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    print(sharedPreferences.getString('email'));
+    if (sharedPreferences.getString('email') == null) {
+      Navigator.pushReplacementNamed(context, '/loginPage');
+    }
+  }
+
   int selectedIndex = 0;
   final screen = [
     // const MenuScreen(),

@@ -8,11 +8,9 @@ import 'package:masakin_app/pages/screen/section/restaurantMenu.dart';
 import 'pages/main_page.dart';
 import 'package:flutter/services.dart';
 
-
 void main() {
   runApp(GetMaterialApp(home: MyApp()));
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:masakin_app/utility/validator.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:http/http.dart' as http;
+
+import 'package:shared_preferences/shared_preferences.dart';
 
 class loginPage extends StatefulWidget {
   // const loginPage({ Key? key }) : super(key: key);
@@ -12,11 +16,44 @@ class loginPage extends StatefulWidget {
 class _loginPageState extends State<loginPage> {
   String? _email, _password;
 
+  TextEditingController email = new TextEditingController();
+  TextEditingController password = new TextEditingController();
+  bool _isLoading = false;
+
+  login(String email, pass) async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    var jsonResponse = null;
+    final response = await http.post(
+      Uri.parse('https://masakin-rpl.herokuapp.com/login'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        "email": email,
+        "password": pass,
+      }),
+    );
+    jsonResponse = json.decode(response.body);
+    if (jsonResponse.length == 0) {
+      setState(() {
+        print("login failed");
+      });
+    } else {
+      sharedPreferences.setString('email', email);
+      print("login success");
+      Navigator.pushReplacementNamed(context, '/mainPage');
+    }
+  }
+
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
   void validateInput() {
     if (formkey.currentState!.validate()) {
-      Navigator.pushReplacementNamed(context, '/mainPage');
+      setState(() {
+        _isLoading = true;
+      });
+      login(email.text, password.text);
     } else {
       print("Not validated");
     }
@@ -105,6 +142,7 @@ class _loginPageState extends State<loginPage> {
         child: Container(
             padding: EdgeInsets.only(left: 16, right: 16),
             child: TextFormField(
+              controller: email,
               validator: RequiredValidator(errorText: "Required"),
               textInputAction: TextInputAction.done,
               decoration: InputDecoration(
@@ -131,6 +169,7 @@ class _loginPageState extends State<loginPage> {
       child: Container(
           padding: EdgeInsets.only(left: 16, right: 16),
           child: TextFormField(
+            controller: password,
             obscureText: true,
             validator: RequiredValidator(errorText: "Required"),
             textInputAction: TextInputAction.done,
