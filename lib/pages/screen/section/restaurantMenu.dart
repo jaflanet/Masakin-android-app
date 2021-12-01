@@ -50,7 +50,7 @@ class RestaurantInfo extends StatelessWidget {
                                 ),
                                 Container(
                                     width: c_width,
-                                    child: Text(resto.location,
+                                    child: Text(resto.address,
                                         textAlign: TextAlign.left))
                               ],
                             )

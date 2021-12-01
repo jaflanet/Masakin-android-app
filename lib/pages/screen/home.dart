@@ -12,6 +12,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final resto = Restaurant.generateRestaurant();
 
+  List<Restaurant> restaurantName = [
+    Restaurant('Ayam Bakar Pindika', 'Gandul'),
+    Restaurant('Ayam Bakar Padem', 'Gandul'),
+    Restaurant('Ayam Bakar Jonathan', 'Gandul'),
+    Restaurant('Ayam Bakar Aidan', 'Gandul'),
+    Restaurant('Ayam Bakar Omar', 'Gandul'),
+  ];
+
   Icon searchIcon = new Icon(Icons.search);
   @override
   Widget build(BuildContext context) {
@@ -118,6 +126,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
+                ),
+                Column(
+                  children: restaurantName
+                      .map((name) => Text('${name.name} - ${name.address}'))
+                      .toList(),
                 ),
               ],
             ),
