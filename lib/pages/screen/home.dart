@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:masakin_app/models/restaurant.dart';
@@ -132,10 +134,70 @@ class _HomeScreenState extends State<HomeScreen> {
                       .map((name) => Text('${name.name} - ${name.address}'))
                       .toList(),
                 ),
+                SizedBox(
+                  height: 15,
+                ),
+                buildRestaurant(),
+                buildRestaurant(),
+                buildRestaurant(),
+                buildRestaurant(),
+                buildRestaurant(),
+                SizedBox(
+                  height: 15,
+                )
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Container buildRestaurant() {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 8),
+      height: 75,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.white,
+        boxShadow: kElevationToShadow[2],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              child: Image.asset(
+                'assets/images/contohmakanan.png',
+                width: 80,
+                height: 60,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(width: 20),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  resto.name,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 20,
+                  ),
+                ),
+                Text(
+                  'Rating: ${resto.rating.toString()}',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 12,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

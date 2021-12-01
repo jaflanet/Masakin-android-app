@@ -292,6 +292,7 @@ class _registerPageState extends State<registerPage> {
             right: 16,
           ),
           child: TextFormField(
+            keyboardType: TextInputType.phone,
             validator: MultiValidator(
               [
                 RequiredValidator(

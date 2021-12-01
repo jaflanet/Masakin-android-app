@@ -1,66 +1,83 @@
-import 'package:flutter/material.dart';
-import 'package:masakin_app/models/restaurant.dart';
+// import 'dart:convert';
 
-class RestaurantInfo extends StatelessWidget {
-  final resto = Restaurant.generateRestaurant();
+// import 'package:flutter/cupertino.dart';
+// import 'package:flutter/material.dart';
+// import 'package:masakin_app/models/restaurant.dart';
+// import 'package:masakin_app/pages/screen/section/restaurantInfo.dart';
+// import 'package:masakin_app/widget/customAppBar.dart';
+// import 'package:http/http.dart' as http;
 
-  @override
-  Widget build(BuildContext context) {
-    double c_width = MediaQuery.of(context).size.width * 0.7;
-    return Scaffold(
-        backgroundColor: Color(0xFFFDFBF2),
-        body: SingleChildScrollView(
-            child: Container(
-          margin: EdgeInsets.only(top: 100),
-          padding: const EdgeInsets.symmetric(horizontal: 25),
-          child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: Color(0xFFFEF7D8),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      spreadRadius: 0.5,
-                      blurRadius: 7,
-                      offset: Offset(0, 3))
-                ]),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(14.0),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              resto.name,
-                              style: TextStyle(
-                                  fontSize: 25, fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.location_on_outlined,
-                                  size: 20,
-                                ),
-                                Container(
-                                    width: c_width,
-                                    child: Text(resto.address,
-                                        textAlign: TextAlign.left))
-                              ],
-                            )
-                          ]),
-                    )
-                  ],
-                )
-              ],
-            ),
-          ),
-        )));
-  }
-}
+// // class restaurantMenu extends StatelessWidget {
+// //   var selected = 0;
+// //   final restaurant = Restaurant.generateRestaurant();
+// //   @override
+// //   Widget build(BuildContext context) {
+// //     return SafeArea(
+// //         child: Scaffold(
+// //             body: Column(
+// //       crossAxisAlignment: CrossAxisAlignment.start,
+// //       children: [
+// //         customAppBar(Icons.arrow_back_ios_new_outlined),
+// //         restaurantInfo(),
+// //         // FoodList(restaurant)
+// //       ],
+// //     )));
+// //   }
+// // }
+
+// class DataFromAPI extends StatefulWidget {
+//   @override
+//   _DataFromAPIState createState() => _DataFromAPIState();
+// }
+
+// class _DataFromAPIState extends State<DataFromAPI> {
+//   Future getMenuData() async {
+//     var response =
+//         await http.get(Uri.https('masakin-rpl.herokuapp.com', 'menu'));
+//     var jsonData = jsonDecode(response.body);
+//     List<Menu> menus = [];
+
+//     for (var u in jsonData) {
+//       Menu menu = Menu(u['photo'], u['menuTitle'], u['price']);
+//       menus.add(menu);
+//     }
+//     print(menus.length);
+//     return menus;
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return SafeArea(
+//         child: Scaffold(
+//             body: Container(
+//       child: Card(
+//           child: FutureBuilder(
+//               future: getMenuData(),
+//               builder: (context, snapshot) {
+//                 if (snapshot.data == null) {
+//                   return Container(
+//                     child: Center(
+//                       child: Text('Loading...'),
+//                     ),
+//                   );
+//                 } else {
+//                   var dataMenu = (snapshot.data as List<Menu>).toList();
+//                   return ListView.builder(
+//                       itemCount: dataMenu.length,
+//                       itemBuilder: (context, i) {
+//                         return ListTile(
+//                             title: Text(dataMenu[i].menuTitle),
+//                             subtitle: Text(dataMenu[i].price.toString()),
+//                             trailing: Image.network(dataMenu[i].photo));
+//                       });
+//                 }
+//               })),
+//     )));
+//   }
+// }
+// class Menu {
+//   final String photo, menuTitle;
+//   final int price;
+
+//   Menu(this.photo, this.menuTitle, this.price);
+// }

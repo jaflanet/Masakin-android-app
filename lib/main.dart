@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:masakin_app/pages/adminScreen/addMenu.dart';
+import 'package:masakin_app/pages/adminScreen/addRestaurant.dart';
 import 'package:masakin_app/pages/login_page.dart';
-import 'package:masakin_app/models/restaurant.dart';
 import 'package:masakin_app/pages/register_page.dart';
 import 'package:masakin_app/pages/screen/section/restaurantMenu.dart';
 import 'pages/main_page.dart';
 import 'package:flutter/services.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(GetMaterialApp(home: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -25,12 +27,27 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFFDFBF2),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: loginPage(),
-      //home: RestaurantInfo(),
+      //home: loginPage(),
+      // home: DataFromAPI(),
+      //home: addRestaurant(),
+      home: MainPage(),
+      // routes: {
+      //   '/loginPage': (context) => loginPage(),
+      //   '/registerPage': (context) => registerPage(),
+      //   '/mainPage': (context) => MainPage(),
+      //   '/addMenu': (context) => addMenu(),
+      //   '/addResto': (context) => addRestaurant(),
+      // },
+      // home: MainPage(),
+      // home: loginPage(),
+      // home: RestaurantInfo(),
+      // home: addRestaurant(),
       routes: {
         '/loginPage': (context) => loginPage(),
         '/registerPage': (context) => registerPage(),
-        '/mainPage': (context) => MainPage()
+        '/mainPage': (context) => MainPage(),
+        '/addMenu': (context) => addMenu(),
+        '/addResto': (context) => addRestaurant(),
       },
     );
   }
