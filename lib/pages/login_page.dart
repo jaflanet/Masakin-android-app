@@ -146,10 +146,16 @@ class _loginPageState extends State<loginPage> {
         child: Container(
             padding: EdgeInsets.only(left: 16, right: 16),
             child: TextFormField(
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+              ),
               controller: email,
               validator: RequiredValidator(errorText: "Required"),
               textInputAction: TextInputAction.done,
               decoration: InputDecoration(
+                  errorStyle: TextStyle(
+                    fontWeight: FontWeight.w500,
+                  ),
                   hintText: 'Email',
                   hintStyle: TextStyle(
                     color: Color(0xFF817E7E),
@@ -174,11 +180,17 @@ class _loginPageState extends State<loginPage> {
       child: Container(
           padding: EdgeInsets.only(left: 16, right: 16),
           child: TextFormField(
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+            ),
             controller: password,
             obscureText: true,
             validator: RequiredValidator(errorText: "Required"),
             textInputAction: TextInputAction.done,
             decoration: InputDecoration(
+                errorStyle: TextStyle(
+                  fontWeight: FontWeight.w500,
+                ),
                 hintText: 'Password',
                 hintStyle: TextStyle(
                   color: Color(0xFF817E7E),

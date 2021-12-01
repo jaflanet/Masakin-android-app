@@ -128,9 +128,15 @@ class _registerPageState extends State<registerPage> {
       child: Container(
           padding: EdgeInsets.only(left: 16, right: 16),
           child: TextFormField(
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+            ),
             validator: RequiredValidator(errorText: "Required"),
             textInputAction: TextInputAction.done,
             decoration: InputDecoration(
+                errorStyle: TextStyle(
+                  fontWeight: FontWeight.w500,
+                ),
                 hintText: 'Name',
                 hintStyle: TextStyle(
                   color: Color(0xFF817E7E),
@@ -156,6 +162,9 @@ class _registerPageState extends State<registerPage> {
             right: 16,
           ),
           child: TextFormField(
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+            ),
             validator: MultiValidator(
               [
                 RequiredValidator(errorText: "Required"),
@@ -164,6 +173,9 @@ class _registerPageState extends State<registerPage> {
             ),
             textInputAction: TextInputAction.done,
             decoration: InputDecoration(
+                errorStyle: TextStyle(
+                  fontWeight: FontWeight.w500,
+                ),
                 hintText: 'Email',
                 hintStyle: TextStyle(
                   color: Color(0xFF817E7E),
@@ -191,6 +203,9 @@ class _registerPageState extends State<registerPage> {
             right: 16,
           ),
           child: TextFormField(
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+            ),
             obscureText: true,
             validator: MultiValidator(
               [
@@ -205,6 +220,9 @@ class _registerPageState extends State<registerPage> {
             ),
             textInputAction: TextInputAction.done,
             decoration: InputDecoration(
+                errorStyle: TextStyle(
+                  fontWeight: FontWeight.w500,
+                ),
                 hintText: 'Password',
                 hintStyle: TextStyle(
                   color: Color(0xFF817E7E),
@@ -232,6 +250,9 @@ class _registerPageState extends State<registerPage> {
             right: 16,
           ),
           child: TextFormField(
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+            ),
             keyboardType: TextInputType.phone,
             validator: MultiValidator(
               [
@@ -242,6 +263,9 @@ class _registerPageState extends State<registerPage> {
             ),
             textInputAction: TextInputAction.done,
             decoration: InputDecoration(
+                errorStyle: TextStyle(
+                  fontWeight: FontWeight.w500,
+                ),
                 hintText: 'Phone Number',
                 hintStyle: TextStyle(
                   color: Color(0xFF817E7E),
