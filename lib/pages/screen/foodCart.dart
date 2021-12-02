@@ -9,12 +9,16 @@ class foodCart extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text("Your Cart")),
-        body: Column(
-          children: [
-            CartProducts(),
-            CartTotal(),
-          ],
+        appBar: AppBar(
+          backgroundColor:Color(0xFFF5C901),
+          title: Text("Your Cart")),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              CartProducts(),
+              CartTotal(),
+            ],
+          ),
         ),
       ),
     );

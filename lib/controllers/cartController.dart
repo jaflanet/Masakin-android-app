@@ -25,6 +25,13 @@ class cartController extends GetxController {
     } else {
       _foods[food] -= 1;
     }
+
+    Get.snackbar(
+      "Food Removed",
+      "you've removed the ${food.name} to the cart",
+      snackPosition: SnackPosition.TOP,
+      duration: Duration(seconds: 2),
+    );
   }
 
   get foods => _foods;
