@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({Key? key}) : super(key: key);
@@ -74,7 +75,7 @@ class _AccountScreenState extends State<AccountScreen> {
                         if (snapshot.data == null) {
                           return Container(
                             child: Center(
-                              child: Text('Loading...'),
+                              child: SpinKitCircle(color:Color(0xFFF5C901)),
                             ),
                           );
                         } else {
@@ -108,7 +109,7 @@ class _AccountScreenState extends State<AccountScreen> {
                   if (snapshot.data == null) {
                     return Container(
                       child: Center(
-                        child: Text('Loading...'),
+                        child: SpinKitCircle(color:Color(0xFFF5C901)),
                       ),
                     );
                   } else {

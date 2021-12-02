@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../../widget/widgets.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class DataFromAPI extends StatefulWidget {
   @override
@@ -12,6 +13,7 @@ class DataFromAPI extends StatefulWidget {
 }
 
 class _foodList extends State<DataFromAPI> {
+  
   final CartController = Get.put(cartController());
   Future getMenuData() async {
     var response =
@@ -27,6 +29,7 @@ class _foodList extends State<DataFromAPI> {
     return menus;
   }
 
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -36,9 +39,7 @@ class _foodList extends State<DataFromAPI> {
           builder: (context, snapshot) {
             if (snapshot.data == null) {
               return Container(
-                child: Center(
-                  child: Text('Loading...'),
-                ),
+                child: SpinKitCircle(color:Color(0xFFF5C901),)
               );
             } else {
               var dataMenu = (snapshot.data as List<Food>).toList();
