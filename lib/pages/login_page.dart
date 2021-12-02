@@ -42,6 +42,7 @@ class _loginPageState extends State<loginPage> {
     } else {
       sharedPreferences.setString('email', email);
       print("login success");
+      print(response.body);
       Navigator.pushReplacementNamed(context, '/mainPage');
     }
   }
