@@ -74,10 +74,8 @@ class _MainPage extends State<MainPage> {
             });
           },
         ),
-        body: SingleChildScrollView(
-          child: Container(
-            child: screen[selectedIndex],
-          ),
+        body: Container(
+          child: screen[selectedIndex],
         ),
       ),
     );

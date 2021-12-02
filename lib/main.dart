@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: const Color(0xFFFDFBF2),
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        fontFamily: 'Montserrat',
       ),
       home: MainPage(),
       routes: {

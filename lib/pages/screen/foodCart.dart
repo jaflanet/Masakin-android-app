@@ -3,7 +3,7 @@ import 'package:masakin_app/widget/cartTotal.dart';
 import '../../widget/widgets.dart';
 
 class foodCart extends StatelessWidget {
-  const foodCart({ Key? key }) : super(key: key);
+  const foodCart({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
