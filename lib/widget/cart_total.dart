@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:masakin_app/controllers/cartController.dart';
+import 'package:masakin_app/controllers/cart_controller.dart';
 
 class CartTotal extends StatelessWidget {
   final cartController controller = Get.find();
