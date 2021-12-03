@@ -12,7 +12,13 @@ class CartTotal extends StatelessWidget {
       builder: (context) {
         return AlertDialog(
             title: Text('Order Processed'),
-            content: Text('you need to pay ${controller.total}'));
+            content: Column(
+              children: [
+                Text('you need to pay ${controller.getTotal()}'),
+                ConfirmButton(context),
+              ],
+            ),
+            );
       },
     );
   }
@@ -35,8 +41,15 @@ class CartTotal extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                // Text(
+                //   '${controller.total}',
+                //   style: TextStyle(
+                //     fontSize: 18,
+                //     fontWeight: FontWeight.bold,
+                //   ),
+                // ),
                 Text(
-                  '${controller.total}',
+                  '${controller.getTotal()}',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -59,6 +72,30 @@ class CartTotal extends StatelessWidget {
             createAlertDialog(context);
           },
           child: Text('Order',
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              )),
+          style: TextButton.styleFrom(
+            elevation: 6,
+            padding: EdgeInsets.fromLTRB(55.0, 15.0, 55.0, 15.0),
+            backgroundColor: Color(0xFFF5C901),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(37)),
+          )),
+    );
+  }
+
+  Container ConfirmButton(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(0, 50, 0, 30),
+      child: TextButton(
+          onPressed: () {
+            controller.clearList();
+            Navigator.pushReplacementNamed(context, '/registerPage');
+          },
+          child: Text('Ok',
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.white,
