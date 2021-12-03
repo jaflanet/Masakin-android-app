@@ -7,12 +7,12 @@ import 'package:http/http.dart' as http;
 import '../../widget/widgets.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-class DataFromAPI extends StatefulWidget {
+class FoodList extends StatefulWidget {
   @override
-  _foodList createState() => _foodList();
+  _FoodList createState() => _FoodList();
 }
 
-class _foodList extends State<DataFromAPI> {
+class _FoodList extends State<FoodList> {
   final CartController = Get.put(cartController());
   Future getMenuData() async {
     var response =
@@ -30,64 +30,81 @@ class _foodList extends State<DataFromAPI> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      // child: Card(
-      child: FutureBuilder(
-          future: getMenuData(),
-          builder: (context, snapshot) {
-            if (snapshot.data == null) {
-              return Container(
-                  child: SpinKitCircle(
-                color: Color(0xFFF5C901),
-              ));
-            } else {
-              var dataMenu = (snapshot.data as List<Food>).toList();
-              return ListView.builder(
-                itemCount: dataMenu.length,
-                itemBuilder: (context, i) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CircleAvatar(
-                          radius: 30,
-                          backgroundImage: NetworkImage(dataMenu[i].imgUrl),
-                        ),
-                        SizedBox(width: 20),
-                        Expanded(
-                          child: Text(
-                            dataMenu[i].name,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
+    double c_width = MediaQuery.of(context).size.width * 0.4;
+    return FutureBuilder(
+        future: getMenuData(),
+        builder: (context, snapshot) {
+          if (snapshot.data == null) {
+            return Container(
+                child: SpinKitCircle(
+              color: Color(0xFFF5C901),
+            ));
+          } else {
+            var dataMenu = (snapshot.data as List<Food>).toList();
+            return ListView.builder(
+              itemCount: dataMenu.length,
+              itemBuilder: (context, i) {
+                return Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                      boxShadow: kElevationToShadow[1],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            child: CircleAvatar(
+                              radius: 30,
+                              backgroundImage: NetworkImage(dataMenu[i].imgUrl),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          child: Text('${dataMenu[i].price}'),
-                        ),
-                        IconButton(
+                          SizedBox(width: 20),
+                          Container(
+                            width: c_width,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  dataMenu[i].name,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                Text(
+                                  'Rp. ${dataMenu[i].price}',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Spacer(),
+                          IconButton(
                             onPressed: () {
                               CartController.addItem(dataMenu[i]);
                             },
                             icon: Icon(
                               Icons.add_circle,
-                            )),
-                      ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  );
-
-                  // return ListTile(
-                  //     title: Text(dataMenu[i].name),
-                  //     subtitle: Text(dataMenu[i].price.toString()),
-                  //     trailing: Image.network(dataMenu[i].imgUrl));
-                },
-              );
-            }
-          }),
-    );
+                  ),
+                );
+              },
+            );
+          }
+        });
   }
 
   // @override

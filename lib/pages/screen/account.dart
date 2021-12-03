@@ -5,7 +5,8 @@ import 'dart:convert';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class AccountScreen extends StatefulWidget {
-  const AccountScreen({Key? key}) : super(key: key);
+  List accounts = [];
+  AccountScreen({Key? key, required this.accounts}) : super(key: key);
 
   @override
   _AccountScreenState createState() => _AccountScreenState();
@@ -18,33 +19,12 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   void initState() {
     super.initState();
-    getAccountData();
+    logOut();
   }
 
-  Future getAccountData() async {
+  Future logOut() async {
     sharedPreferences = await SharedPreferences.getInstance();
     finalEmail = sharedPreferences.getString('email')!;
-    print(sharedPreferences.getString('email'));
-
-    var queryParameters = {'email': finalEmail};
-    var response = await http.get(
-        Uri.https(
-            'masakin-rpl.herokuapp.com', 'account/byemail', queryParameters),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        });
-    var jsonData = jsonDecode(response.body);
-    print(response.body);
-
-    List<Account> accounts = [];
-
-    for (var u in jsonData) {
-      Account account = Account(u['name'], u['email'], u['accPhoneNumber'],
-          u['profilePicture'], u['address']);
-      accounts.add(account);
-      print(accounts);
-    }
-    return accounts;
   }
 
   @override
@@ -68,74 +48,43 @@ class _AccountScreenState extends State<AccountScreen> {
                   height: 200,
                 ),
                 Positioned(
-                  top: 100,
-                  child: FutureBuilder(
-                      future: getAccountData(),
-                      builder: (context, snapshot) {
-                        if (snapshot.data == null) {
-                          return Container(
-                            child: Center(
-                              child: SpinKitCircle(color: Color(0xFFF5C901)),
-                            ),
-                          );
-                        } else {
-                          var dataAccount =
-                              (snapshot.data as List<Account>).toList();
-                          return Container(
-                            height: 165,
-                            width: 165,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Color(0xFFFDFBF2), width: 10),
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                fit: BoxFit.fitHeight,
-                                image:
-                                    NetworkImage(dataAccount[0].profilePicture),
-                              ),
-                            ),
-                          );
-                        }
-                      }),
-                )
+                    top: 100,
+                    child: Container(
+                      height: 165,
+                      width: 165,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color(0xFFFDFBF2), width: 10),
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          fit: BoxFit.fitHeight,
+                          image:
+                              NetworkImage(widget.accounts[0].profilePicture),
+                        ),
+                      ),
+                    ))
               ],
             ),
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 45),
-            child: FutureBuilder(
-                future: getAccountData(),
-                builder: (context, snapshot) {
-                  if (snapshot.data == null) {
-                    return Container(
-                      child: Center(
-                        child: SpinKitCircle(color: Color(0xFFF5C901)),
-                      ),
-                    );
-                  } else {
-                    var dataAccount = (snapshot.data as List<Account>).toList();
-
-                    return Column(
-                      children: [
-                        SizedBox(
-                          height: 80,
-                        ),
-                        Text(
-                          dataAccount[0].name,
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        buildEmailText(dataAccount[0].email),
-                        buildPhoneNum(dataAccount[0].accPhoneNumber),
-                        buildAddrText(dataAccount[0].address),
-                        buildButtonSignUp(),
-                      ],
-                    );
-                  }
-                }),
-          ),
+              padding: EdgeInsets.symmetric(horizontal: 45),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 80,
+                  ),
+                  Text(
+                    widget.accounts[0].name,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  buildEmailText(widget.accounts[0].email),
+                  buildPhoneNum(widget.accounts[0].accPhoneNumber),
+                  buildAddrText(widget.accounts[0].address),
+                  buildButtonSignUp(),
+                ],
+              )),
         ],
       ),
     );
@@ -285,24 +234,27 @@ class _AccountScreenState extends State<AccountScreen> {
     return Container(
       padding: EdgeInsets.fromLTRB(0, 50, 0, 30),
       child: TextButton(
-          onPressed: () {
-            sharedPreferences.clear();
-            Navigator.pushReplacementNamed(context, '/loginPage');
-          },
-          child: Text('Logout',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-              )),
-          style: TextButton.styleFrom(
-            elevation: 6,
-            shadowColor: Colors.black,
-            padding: EdgeInsets.fromLTRB(55.0, 15.0, 55.0, 15.0),
-            backgroundColor: Color(0xFFFF8023),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(37)),
-          )),
+        onPressed: () {
+          print(context);
+          sharedPreferences.clear();
+          Navigator.pushReplacementNamed(context, '/loginPage');
+        },
+        child: Text('Logout',
+            style: TextStyle(
+              fontSize: 18,
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+            )),
+        style: TextButton.styleFrom(
+          elevation: 6,
+          shadowColor: Colors.black,
+          padding: EdgeInsets.fromLTRB(55.0, 15.0, 55.0, 15.0),
+          backgroundColor: Color(0xFFFF8023),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(37),
+          ),
+        ),
+      ),
     );
   }
 }
