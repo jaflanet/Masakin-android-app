@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:http/http.dart' as http;
 
 class registerPage extends StatefulWidget {
   const registerPage({Key? key}) : super(key: key);
@@ -9,31 +12,72 @@ class registerPage extends StatefulWidget {
 }
 
 class _registerPageState extends State<registerPage> {
+  TextEditingController name = new TextEditingController();
+  TextEditingController email = new TextEditingController();
+  TextEditingController password = new TextEditingController();
+  TextEditingController accPhoneNumber = new TextEditingController();
+  TextEditingController address = new TextEditingController();
+
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String? _email, _password;
 
   void validateInput() {
     if (formKey.currentState!.validate()) {
-      Navigator.pushReplacementNamed(context, '/home');
+      signup(name.text, email.text, password.text, accPhoneNumber.text,
+          address.text);
     } else {
       print("Not validated");
     }
   }
 
+  signup(String name, email, password, accPhoneNumber, address) async {
+    final response = await http.post(
+      Uri.parse('https://masakin-rpl.herokuapp.com/signup'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        "name": name,
+        "email": email,
+        "password": password,
+        "accPhoneNumber": accPhoneNumber,
+        "address": address
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      print("success to create account");
+      successDialog(context);
+      Navigator.pushReplacementNamed(context, '/loginPage');
+    } else {
+      print("failed to create account");
+    }
+  }
+
+  successDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20))),
+          title: Text(
+            'Your account has been created',
+            textAlign: TextAlign.center,
+          ),
+          content: Text(
+            'Please log in with your account',
+            textAlign: TextAlign.center,
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    // var doRegister = () {
-    //   // print('registered');
-
-    //   // final form? = formKey.currentState;
-    //   // form.save();
-    // };
-
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   title: Text('Register'),
-        // ),
         body: new SingleChildScrollView(
           child: Container(
             child: Column(
@@ -77,9 +121,11 @@ class _registerPageState extends State<registerPage> {
                           buildPassword(),
                           const SizedBox(height: 23),
                           buildPhoneNumber(),
+                          const SizedBox(height: 23),
+                          buildAddress(),
                           const SizedBox(height: 35),
                           buildButtonSignUp(),
-                          SizedBox(height: 23),
+                          SizedBox(height: 28),
                           Container(
                             decoration: BoxDecoration(
                               boxShadow: kElevationToShadow[6],
@@ -102,6 +148,9 @@ class _registerPageState extends State<registerPage> {
                               ),
                             ),
                           ),
+                          const SizedBox(
+                            height: 35,
+                          )
                         ],
                       ),
                     ),
@@ -128,6 +177,7 @@ class _registerPageState extends State<registerPage> {
       child: Container(
           padding: EdgeInsets.only(left: 16, right: 16),
           child: TextFormField(
+            controller: name,
             style: TextStyle(
               fontWeight: FontWeight.w500,
             ),
@@ -162,6 +212,7 @@ class _registerPageState extends State<registerPage> {
             right: 16,
           ),
           child: TextFormField(
+            controller: email,
             style: TextStyle(
               fontWeight: FontWeight.w500,
             ),
@@ -203,6 +254,7 @@ class _registerPageState extends State<registerPage> {
             right: 16,
           ),
           child: TextFormField(
+            controller: password,
             style: TextStyle(
               fontWeight: FontWeight.w500,
             ),
@@ -250,6 +302,7 @@ class _registerPageState extends State<registerPage> {
             right: 16,
           ),
           child: TextFormField(
+            controller: accPhoneNumber,
             style: TextStyle(
               fontWeight: FontWeight.w500,
             ),
@@ -276,6 +329,40 @@ class _registerPageState extends State<registerPage> {
           ),
         ),
       );
+
+  Widget buildAddress() => Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(37),
+        color: Colors.white,
+        border: Border.all(
+          color: Color(0xFFF5C901),
+          width: 2,
+        ),
+        boxShadow: kElevationToShadow[6],
+      ),
+      child: Container(
+          padding: EdgeInsets.only(left: 16, right: 16),
+          child: TextFormField(
+            controller: address,
+            keyboardType: TextInputType.multiline,
+            maxLines: null,
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+            ),
+            validator: RequiredValidator(errorText: "Required"),
+            textInputAction: TextInputAction.done,
+            decoration: InputDecoration(
+                errorStyle: TextStyle(
+                  fontWeight: FontWeight.w500,
+                ),
+                hintText: 'Address',
+                hintStyle: TextStyle(
+                  color: Color(0xFF817E7E),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                ),
+                border: InputBorder.none),
+          )));
 
   Widget buildButtonSignUp() => TextButton(
         onPressed: () {
