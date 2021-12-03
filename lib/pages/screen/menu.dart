@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:masakin_app/pages/screen/foodCart.dart';
+import 'package:masakin_app/pages/screen/food_cart.dart';
 import '../../widget/widgets.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -14,13 +14,11 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child:Scaffold(
-          body: Column(
-            children: [
-              DataFromAPI (),
-            ],
-          )
-    )
-    );
+        child: Scaffold(
+            body: Column(
+      children: [
+        DataFromAPI(),
+      ],
+    )));
   }
 }

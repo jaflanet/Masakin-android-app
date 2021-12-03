@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:masakin_app/controllers/cartController.dart';
+import 'package:masakin_app/controllers/cart_controller.dart';
 // import 'package:masakin_app/models/food.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
@@ -13,7 +13,6 @@ class DataFromAPI extends StatefulWidget {
 }
 
 class _foodList extends State<DataFromAPI> {
-  
   final CartController = Get.put(cartController());
   Future getMenuData() async {
     var response =
@@ -29,7 +28,6 @@ class _foodList extends State<DataFromAPI> {
     return menus;
   }
 
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -39,8 +37,9 @@ class _foodList extends State<DataFromAPI> {
           builder: (context, snapshot) {
             if (snapshot.data == null) {
               return Container(
-                child: SpinKitCircle(color:Color(0xFFF5C901),)
-              );
+                  child: SpinKitCircle(
+                color: Color(0xFFF5C901),
+              ));
             } else {
               var dataMenu = (snapshot.data as List<Food>).toList();
               return ListView.builder(
