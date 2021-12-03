@@ -3,6 +3,7 @@ import '../../widget/widgets.dart';
 
 class cartController extends GetxController {
   var _foods = {}.obs;
+  // RxInt total = 0.obs;
 
   void addItem(Food food) {
     if (_foods.containsKey(food)) {
@@ -39,9 +40,16 @@ class cartController extends GetxController {
   get itemSubtotal =>
       _foods.entries.map((food) => food.key.price * food.value).toList();
 
-  get total => _foods.entries
-      .map((food) => food.key.price * food.value)
-      .toList()
-      .reduce((value, element) => value + element)
-      .toStringAsFixed(2);
+  getTotal() {
+    num total = 0;
+    _foods.entries
+        .map((food) => food.key.price * food.value)
+        .toList()
+        .forEach((element) => total += element);
+    return total;
+  }
+
+  clearList() {
+    _foods.clear();
+  }
 }
