@@ -75,7 +75,7 @@ class _AccountScreenState extends State<AccountScreen> {
                         if (snapshot.data == null) {
                           return Container(
                             child: Center(
-                              child: SpinKitCircle(color:Color(0xFFF5C901)),
+                              child: SpinKitCircle(color: Color(0xFFF5C901)),
                             ),
                           );
                         } else {
@@ -109,7 +109,7 @@ class _AccountScreenState extends State<AccountScreen> {
                   if (snapshot.data == null) {
                     return Container(
                       child: Center(
-                        child: SpinKitCircle(color:Color(0xFFF5C901)),
+                        child: SpinKitCircle(color: Color(0xFFF5C901)),
                       ),
                     );
                   } else {
@@ -127,140 +127,9 @@ class _AccountScreenState extends State<AccountScreen> {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        // buildEmailText(),
-                        Column(
-                          children: [
-                            SizedBox(
-                              height: 30,
-                            ),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.email_outlined,
-                                  size: 30,
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                Text(
-                                  'Email',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  dataAccount[0].email,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Divider(
-                              color: Color(0xFFF5C901),
-                              thickness: 3,
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            SizedBox(
-                              height: 30,
-                            ),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.email_outlined,
-                                  size: 30,
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                Text(
-                                  'Phone Number',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  dataAccount[0].accPhoneNumber,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Divider(
-                              color: Color(0xFFF5C901),
-                              thickness: 3,
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            SizedBox(
-                              height: 30,
-                            ),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.email_outlined,
-                                  size: 30,
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                Text(
-                                  'Address',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              children: [
-                                Flexible(
-                                  child: Text(
-                                    dataAccount[0].address,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Divider(
-                              color: Color(0xFFF5C901),
-                              thickness: 3,
-                            ),
-                          ],
-                        ),
-                        // buildPhoneNum(),
-                        // buildAddrText(),
+                        buildEmailText(dataAccount[0].email),
+                        buildPhoneNum(dataAccount[0].accPhoneNumber),
+                        buildAddrText(dataAccount[0].address),
                         buildButtonSignUp(),
                       ],
                     );
@@ -272,145 +141,145 @@ class _AccountScreenState extends State<AccountScreen> {
     );
   }
 
-  // Column buildEmailText() {
-  //   return Column(
-  //     children: [
-  //       SizedBox(
-  //         height: 30,
-  //       ),
-  //       Row(
-  //         children: [
-  //           Icon(
-  //             Icons.email_outlined,
-  //             size: 30,
-  //           ),
-  //           SizedBox(
-  //             width: 8,
-  //           ),
-  //           Text(
-  //             'Email',
-  //             style: TextStyle(
-  //               fontSize: 18,
-  //               fontWeight: FontWeight.w600,
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //       SizedBox(
-  //         height: 10,
-  //       ),
-  //       Row(
-  //         children: [
-  //           Text(
-  //             'Aidankun@kunkun.com',
-  //             style: TextStyle(
-  //               fontWeight: FontWeight.w500,
-  //               fontSize: 18,
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //       Divider(
-  //         color: Color(0xFFF5C901),
-  //         thickness: 3,
-  //       ),
-  //     ],
-  //   );
-  // }
+  Column buildEmailText(email) {
+    return Column(
+      children: [
+        SizedBox(
+          height: 30,
+        ),
+        Row(
+          children: [
+            Icon(
+              Icons.email_outlined,
+              size: 30,
+            ),
+            SizedBox(
+              width: 8,
+            ),
+            Text(
+              'Email',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Row(
+          children: [
+            Text(
+              email,
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 18,
+              ),
+            ),
+          ],
+        ),
+        Divider(
+          color: Color(0xFFF5C901),
+          thickness: 3,
+        ),
+      ],
+    );
+  }
 
-  // Column buildPhoneNum() {
-  //   return Column(
-  //     children: [
-  //       SizedBox(
-  //         height: 30,
-  //       ),
-  //       Row(
-  //         children: [
-  //           Icon(
-  //             Icons.email_outlined,
-  //             size: 30,
-  //           ),
-  //           SizedBox(
-  //             width: 8,
-  //           ),
-  //           Text(
-  //             'Phone Number',
-  //             style: TextStyle(
-  //               fontSize: 18,
-  //               fontWeight: FontWeight.w600,
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //       SizedBox(
-  //         height: 10,
-  //       ),
-  //       Row(
-  //         children: [
-  //           Text(
-  //             '0877777777',
-  //             style: TextStyle(
-  //               fontWeight: FontWeight.w500,
-  //               fontSize: 18,
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //       Divider(
-  //         color: Color(0xFFF5C901),
-  //         thickness: 3,
-  //       ),
-  //     ],
-  //   );
-  // }
+  Column buildPhoneNum(phoneNum) {
+    return Column(
+      children: [
+        SizedBox(
+          height: 30,
+        ),
+        Row(
+          children: [
+            Icon(
+              Icons.phone_outlined,
+              size: 30,
+            ),
+            SizedBox(
+              width: 8,
+            ),
+            Text(
+              'Phone Number',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Row(
+          children: [
+            Text(
+              phoneNum,
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 18,
+              ),
+            ),
+          ],
+        ),
+        Divider(
+          color: Color(0xFFF5C901),
+          thickness: 3,
+        ),
+      ],
+    );
+  }
 
-  // Column buildAddrText() {
-  //   return Column(
-  //     children: [
-  //       SizedBox(
-  //         height: 30,
-  //       ),
-  //       Row(
-  //         children: [
-  //           Icon(
-  //             Icons.email_outlined,
-  //             size: 30,
-  //           ),
-  //           SizedBox(
-  //             width: 8,
-  //           ),
-  //           Text(
-  //             'Address',
-  //             style: TextStyle(
-  //               fontSize: 18,
-  //               fontWeight: FontWeight.w600,
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //       SizedBox(
-  //         height: 10,
-  //       ),
-  //       Row(
-  //         children: [
-  //           Flexible(
-  //             child: Text(
-  //               'Jalan Catur Darma No.23A RT 3 RW 6, Cijantung, Pasar Rebo, Jakarta Timur',
-  //               style: TextStyle(
-  //                 fontSize: 18,
-  //                 fontWeight: FontWeight.w500,
-  //               ),
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //       Divider(
-  //         color: Color(0xFFF5C901),
-  //         thickness: 3,
-  //       ),
-  //     ],
-  //   );
-  // }
+  Column buildAddrText(address) {
+    return Column(
+      children: [
+        SizedBox(
+          height: 30,
+        ),
+        Row(
+          children: [
+            Icon(
+              Icons.email_outlined,
+              size: 30,
+            ),
+            SizedBox(
+              width: 8,
+            ),
+            Text(
+              'Address',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Row(
+          children: [
+            Flexible(
+              child: Text(
+                address,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ],
+        ),
+        Divider(
+          color: Color(0xFFF5C901),
+          thickness: 3,
+        ),
+      ],
+    );
+  }
 
   Container buildButtonSignUp() {
     return Container(
