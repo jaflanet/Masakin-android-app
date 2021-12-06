@@ -52,4 +52,11 @@ class cartController extends GetxController {
   clearList() {
     _foods.clear();
   }
+
+  foodlist() {
+    var list = _foods.entries
+        .map((food) => food.value.toString() + ' ' + food.key.name.toString())
+        .toList();
+    return list.toString();
+  }
 }
