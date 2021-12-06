@@ -9,13 +9,13 @@ class CartTotal extends StatelessWidget {
   CartTotal({ Key? key }) : super(key: key);
   final cartController controller = Get.find();
 
-  order(String orderlist) async {
+  order(List orderlist) async {
     final response = await http.post(
       Uri.parse('https://masakin-rpl.herokuapp.com/testOrder'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, String>{
+      body: jsonEncode(<String, List>{
         "orderMenu": orderlist,
       }),
     );
@@ -37,7 +37,7 @@ class CartTotal extends StatelessWidget {
           title: Text('Order Processed'),
           content: Column(
             children: [
-              Text(controller.foodlist()),
+              // Text(controller.foodlist()),
               Text('you need to pay ${controller.getTotal()}'),
               ConfirmButton(context),
             ],

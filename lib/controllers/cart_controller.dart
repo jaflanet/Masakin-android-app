@@ -55,8 +55,13 @@ class cartController extends GetxController {
 
   foodlist() {
     var list = _foods.entries
-        .map((food) => food.value.toString() + ' ' + food.key.name.toString())
+        .map((food) =>
+            food.value.toString() +
+            ' ' +
+            food.key.name.toString() +
+            ' ' +
+            (food.key.price * food.value).toString())
         .toList();
-    return list.toString();
+    return list;
   }
 }

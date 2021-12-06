@@ -85,16 +85,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: Container(
+                        height: 50,
+                        width: 50,
                         decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color(0xFFF4B100),
-                          boxShadow: kElevationToShadow[6],
+                       image: DecorationImage(
+                          fit: BoxFit.fitHeight,
+                          image:
+                              NetworkImage(widget.accounts[0].profilePicture),
                         ),
-                        child: Icon(
-                          Icons.account_circle_outlined,
-                          size: 50,
-                        ),
-                      ),
+                      )),
                     ),
                   ),
                 ]),
