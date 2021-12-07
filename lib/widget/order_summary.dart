@@ -15,14 +15,16 @@ class orderSummary extends StatefulWidget {
 class _orderSummaryState extends State<orderSummary> {
   final cartController controller = Get.find();
 
-  order(List orderlist) async {
+  order(String orderlist,String totalprice) async {
     final response = await http.post(
-      Uri.parse('https://masakin-rpl.herokuapp.com/testOrder'),
+      Uri.parse('https://masakin-rpl.herokuapp.com/order'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, List>{
-        "orderMenu": orderlist,
+      body: jsonEncode(<String, String>{
+        "email":'admin@gmail.com',
+        "orderFood": orderlist,
+        "totalPrice": totalprice,
       }),
     );
 
@@ -116,7 +118,7 @@ class _orderSummaryState extends State<orderSummary> {
       padding: EdgeInsets.fromLTRB(0, 50, 0, 30),
       child: TextButton(
           onPressed: () {
-            order(controller.foodlist());
+            order(controller.foodlist().toString(), controller.getTotal().toString());
             Navigator.pushReplacementNamed(context, '/mainPage');
             Navigator.pop(context2);
           },
