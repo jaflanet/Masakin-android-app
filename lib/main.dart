@@ -27,6 +27,8 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFFDFBF2),
         visualDensity: VisualDensity.adaptivePlatformDensity,
         fontFamily: 'Montserrat',
+        colorScheme:
+            ColorScheme.fromSwatch().copyWith(secondary: Color(0xFFF4B100)),
       ),
       home: MainPage(),
       routes: {

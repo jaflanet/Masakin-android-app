@@ -24,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double c_width = MediaQuery.of(context).size.width * 0.85;
     return SingleChildScrollView(
       child: Stack(
         children: [
@@ -62,11 +63,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Hello, ${widget.accounts[0].name}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 24,
+                      Container(
+                        width: c_width,
+                        child: Text(
+                          'Hello, ${widget.accounts[0].name}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 24,
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -79,23 +83,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ],
-                  ),
-                  SizedBox(width: 20),
-                  Expanded(
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color(0xFFF4B100),
-                          boxShadow: kElevationToShadow[6],
-                        ),
-                        child: Icon(
-                          Icons.account_circle_outlined,
-                          size: 50,
-                        ),
-                      ),
-                    ),
                   ),
                 ]),
                 SizedBox(height: 20),

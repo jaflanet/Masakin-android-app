@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,7 +38,13 @@ class _loginPageState extends State<loginPage> {
     jsonResponse = json.decode(response.body);
     if (jsonResponse.length == 0) {
       setState(() {
-        print("login failed");
+        Get.snackbar(
+          "Login Failed",
+          "Invalid Email or Password",
+          snackPosition: SnackPosition.TOP,
+          duration: Duration(seconds: 2),
+          backgroundColor: Color(0xFFFF8023).withOpacity(0.8),
+        );
       });
     } else {
       sharedPreferences.setString('email', email);
@@ -62,7 +69,6 @@ class _loginPageState extends State<loginPage> {
 
   @override
   Widget build(BuildContext context) {
-    var doLogin = () {};
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
