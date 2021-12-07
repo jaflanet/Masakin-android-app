@@ -1,24 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:masakin_app/controllers/cart_controller.dart';
+import 'package:masakin_app/widget/food_list.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class CartTotal extends StatelessWidget {
+  CartTotal({ Key? key }) : super(key: key);
   final cartController controller = Get.find();
-  CartTotal({Key? key}) : super(key: key);
+
+  order(List orderlist) async {
+    final response = await http.post(
+      Uri.parse('https://masakin-rpl.herokuapp.com/testOrder'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, List>{
+        "orderMenu": orderlist,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      print("success");
+      controller.clearList();
+      // successDialog(context);
+    } else {
+      print("failed");
+    }
+  }
 
   createAlertDialog(BuildContext context) {
     return showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-            title: Text('Order Processed'),
-            content: Column(
-              children: [
-                Text('you need to pay ${controller.getTotal()}'),
-                ConfirmButton(context),
-              ],
-            ),
-            );
+          title: Text('Order Processed'),
+          content: Column(
+            children: [
+              // Text(controller.foodlist()),
+              Text('you need to pay ${controller.getTotal()}'),
+              ConfirmButton(context),
+            ],
+          ),
+        );
       },
     );
   }
@@ -92,8 +116,8 @@ class CartTotal extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(0, 50, 0, 30),
       child: TextButton(
           onPressed: () {
-            controller.clearList();
-            Navigator.pushReplacementNamed(context, '/registerPage');
+            order(controller.foodlist());
+            Navigator.pop(context);
           },
           child: Text('Ok',
               style: TextStyle(
@@ -111,3 +135,4 @@ class CartTotal extends StatelessWidget {
     );
   }
 }
+

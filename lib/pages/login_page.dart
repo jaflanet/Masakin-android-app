@@ -150,62 +150,83 @@ class _loginPageState extends State<loginPage> {
   }
 
   Widget buildEmail() => Container(
-        child: Container(
-            padding: EdgeInsets.only(left: 16, right: 16),
-            child: TextFormField(
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-              ),
-              controller: email,
-              validator: RequiredValidator(errorText: "Required"),
-              textInputAction: TextInputAction.done,
-              decoration: InputDecoration(
-                  errorStyle: TextStyle(
-                    fontWeight: FontWeight.w500,
-                  ),
-                  hintText: 'Email',
-                  hintStyle: TextStyle(
-                    color: Color(0xFF817E7E),
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                  ),
-                  border: InputBorder.none),
-            )),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(37),
-            color: Colors.white,
-            border: Border.all(color: Color(0xFFF5C901), width: 2),
-            boxShadow: kElevationToShadow[6]),
-      );
-
-  Widget buildPassword() => Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(37),
-          color: Colors.white,
-          border: Border.all(color: Color(0xFFF5C901), width: 2),
-          boxShadow: kElevationToShadow[6]),
-      child: Container(
-          padding: EdgeInsets.only(left: 16, right: 16),
-          child: TextFormField(
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-            ),
-            controller: password,
-            obscureText: true,
+        child: TextFormField(
+            style: TextStyle(fontWeight: FontWeight.w500),
+            controller: email,
             validator: RequiredValidator(errorText: "Required"),
             textInputAction: TextInputAction.done,
             decoration: InputDecoration(
-                errorStyle: TextStyle(
-                  fontWeight: FontWeight.w500,
+              errorStyle: TextStyle(
+                fontWeight: FontWeight.w500,
+              ),
+              hintText: 'Email',
+              hintStyle: TextStyle(
+                color: Color(0xFF817E7E),
+                fontWeight: FontWeight.w500,
+                fontSize: 16,
+              ),
+              fillColor: Colors.white,
+              filled: true,
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(37),
+                borderSide: BorderSide(
+                  color: Color(0xFFF5C901),
+                  width: 2,
                 ),
-                hintText: 'Password',
-                hintStyle: TextStyle(
-                  color: Color(0xFF817E7E),
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(37),
+                borderSide: BorderSide(
+                  color: Color(0xFFF5C901),
+                  width: 2,
                 ),
-                border: InputBorder.none),
-          )));
+              ),
+              contentPadding: const EdgeInsets.all(16),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(37),
+              ),
+            )),
+      );
+
+  Widget buildPassword() => Container(
+          child: TextFormField(
+        style: TextStyle(fontWeight: FontWeight.w500),
+        controller: password,
+        obscureText: true,
+        validator: RequiredValidator(errorText: "Required"),
+        textInputAction: TextInputAction.done,
+        decoration: InputDecoration(
+          errorStyle: TextStyle(
+            fontWeight: FontWeight.w500,
+          ),
+          hintText: 'Password',
+          hintStyle: TextStyle(
+            color: Color(0xFF817E7E),
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
+          ),
+          fillColor: Colors.white,
+          filled: true,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(37),
+            borderSide: BorderSide(
+              color: Color(0xFFF5C901),
+              width: 2,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(37),
+            borderSide: BorderSide(
+              color: Color(0xFFF5C901),
+              width: 2,
+            ),
+          ),
+          contentPadding: const EdgeInsets.all(16),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(37),
+          ),
+        ),
+      ));
 
   Widget buildButtonLogin() => TextButton(
       onPressed: () {
