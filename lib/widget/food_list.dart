@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:masakin_app/controllers/cart_controller.dart';
 // import 'package:masakin_app/models/food.dart';
@@ -13,13 +15,12 @@ class FoodList extends StatefulWidget {
 }
 
 class _FoodList extends State<FoodList> {
+  List<Food> menus = [];
   final CartController = Get.put(cartController());
   Future getMenuData() async {
     var response =
         await http.get(Uri.https('masakin-rpl.herokuapp.com', 'menu'));
     var jsonData = jsonDecode(response.body);
-    List<Food> menus = [];
-
     for (var u in jsonData) {
       Food menu = Food(u['photo'], u['menuTitle'], u['price']);
       menus.add(menu);
@@ -28,9 +29,64 @@ class _FoodList extends State<FoodList> {
     return menus;
   }
 
+  List<Food> foundedMenu = [];
+  @override
+  initState() {
+    super.initState();
+    setState(() {
+      foundedMenu = menus;
+    });
+  }
+
+  onSearch(String search) {
+    setState(() {
+      foundedMenu = menus
+          .where((menus) => menus.name.toLowerCase().contains(search))
+          .toList();
+    });
+  }
+
+  search() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      child: TextField(
+        onChanged: (value) => onSearch(value),
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          isDense: true,
+          prefixIcon: Icon(
+            Icons.search,
+            size: 24,
+            color: Color(0xFFF5C901),
+          ),
+          hintText: 'Search here..',
+          hintStyle: TextStyle(
+            color: Color(0xFF817E7E),
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(37),
+            borderSide: BorderSide(
+              color: Color(0xFFF5C901),
+              width: 2,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(37),
+            borderSide: BorderSide(
+              color: Color(0xFFF5C901),
+              width: 2,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    double c_width = MediaQuery.of(context).size.width * 0.4;
     return FutureBuilder(
         future: getMenuData(),
         builder: (context, snapshot) {
@@ -40,132 +96,99 @@ class _FoodList extends State<FoodList> {
               color: Color(0xFFF5C901),
             ));
           } else {
-            var dataMenu = (snapshot.data as List<Food>).toList();
-            return ListView.builder(
-              itemCount: dataMenu.length,
-              itemBuilder: (context, i) {
-                return Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 5, 20, 15),
+            return Column(
+              children: [
+                search(),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(25, 0, 0, 20),
                   child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
-                      boxShadow: kElevationToShadow[1],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            child: ClipRRect(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                              child: Image.network(
-                                dataMenu[i].imgUrl,
-                                width: 80,
-                                height: 60,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 20),
-                          Container(
-                            width: c_width,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  dataMenu[i].name,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                Text(
-                                  'Rp. ${dataMenu[i].price}',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Spacer(),
-                          IconButton(
-                            onPressed: () {
-                              CartController.addItem(dataMenu[i]);
-                            },
-                            icon: Icon(
-                              Icons.add_circle,
-                            ),
-                          ),
-                        ],
+                    child: Text(
+                      'Menu',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 20,
                       ),
                     ),
                   ),
-                );
-              },
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: foundedMenu.length,
+                    itemBuilder: (context, i) {
+                      return listFood(dataMenu: foundedMenu[i]);
+                    },
+                  ),
+                ),
+              ],
             );
           }
         });
   }
 
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Flexible(
-  //       child: ListView.builder(
-  //           itemCount: dataMenu.length,
-  //           itemBuilder: (BuildContext context, int index) {
-  //             return foodListCard(index: index);
-  //           }));
-  // }
+  listFood({required var dataMenu}) {
+    double c_width = MediaQuery.of(context).size.width * 0.4;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 5, 20, 15),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+          boxShadow: kElevationToShadow[1],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  child: Image.network(
+                    dataMenu.imgUrl,
+                    width: 80,
+                    height: 60,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              SizedBox(width: 20),
+              Container(
+                width: c_width,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      dataMenu.name,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    Text(
+                      'Rp. ${dataMenu.price}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Spacer(),
+              IconButton(
+                onPressed: () {
+                  CartController.addItem(dataMenu);
+                },
+                icon: Icon(
+                  Icons.add_circle,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
-
-// class foodListCard extends StatelessWidget {
-//   final CartController = Get.put(cartController());
-//   final int index;
-//   foodListCard({
-//     Key? key,
-//     required this.index,
-//   }) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-//       child: Row(
-//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//         children: [
-//           CircleAvatar(
-//             radius: 30,
-//             backgroundImage: NetworkImage(Food.generatedFood[index].imgUrl),
-//           ),
-//           SizedBox(width: 20),
-//           Expanded(
-//             child: Text(
-//               Food.generatedFood[index].name,
-//               style: TextStyle(
-//                 fontWeight: FontWeight.bold,
-//                 fontSize: 16,
-//               ),
-//             ),
-//           ),
-//           Expanded(
-//             child: Text('${Food.generatedFood[index].price}'),
-//           ),
-//           IconButton(
-//               onPressed: () {
-//                 CartController.addItem(Food.generatedFood[index]);
-//               },
-//               icon: Icon(
-//                 Icons.add_circle,
-//               )),
-//         ],
-//       ),
-//     );
-//   }
-// }
 
 class Food {
   final String imgUrl;
