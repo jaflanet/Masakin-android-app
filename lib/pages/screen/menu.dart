@@ -77,7 +77,7 @@ class _MenuScreenState extends State<MenuScreen> {
           ],
         ),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          padding: EdgeInsets.all(20),
           child: TextField(
             decoration: InputDecoration(
               filled: true,

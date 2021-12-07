@@ -45,8 +45,7 @@ class _FoodList extends State<FoodList> {
               itemCount: dataMenu.length,
               itemBuilder: (context, i) {
                 return Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  padding: const EdgeInsets.fromLTRB(20, 5, 20, 15),
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -54,15 +53,20 @@ class _FoodList extends State<FoodList> {
                       boxShadow: kElevationToShadow[1],
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 10),
+                      padding: const EdgeInsets.all(10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Container(
-                            child: CircleAvatar(
-                              radius: 30,
-                              backgroundImage: NetworkImage(dataMenu[i].imgUrl),
+                            child: ClipRRect(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              child: Image.network(
+                                dataMenu[i].imgUrl,
+                                width: 80,
+                                height: 60,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                           SizedBox(width: 20),
