@@ -15,11 +15,16 @@ class loginPage extends StatefulWidget {
 }
 
 class _loginPageState extends State<loginPage> {
-  String? _email, _password;
-
   TextEditingController email = new TextEditingController();
   TextEditingController password = new TextEditingController();
-  bool _isLoading = false;
+
+  bool _showPassword = true;
+
+  void _toggleShow() {
+    setState(() {
+      _showPassword = !_showPassword;
+    });
+  }
 
   login(String email, pass) async {
     final SharedPreferences sharedPreferences =
@@ -56,6 +61,7 @@ class _loginPageState extends State<loginPage> {
 
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
+  bool _isLoading = false;
   void validateInput() {
     if (formkey.currentState!.validate()) {
       setState(() {
@@ -192,10 +198,19 @@ class _loginPageState extends State<loginPage> {
           child: TextFormField(
         style: TextStyle(fontWeight: FontWeight.w500),
         controller: password,
-        obscureText: true,
+        obscureText: _showPassword,
         validator: RequiredValidator(errorText: "Required"),
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
+          suffixIcon: IconButton(
+            icon: Icon(_showPassword
+                ? Icons.visibility_off_outlined
+                : Icons.visibility_outlined),
+            onPressed: _toggleShow,
+            color: Color(_showPassword ? 0xFF817E7E : 0xFFF5C901),
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+          ),
           errorStyle: TextStyle(
             fontWeight: FontWeight.w500,
           ),

@@ -19,7 +19,14 @@ class _registerPageState extends State<registerPage> {
   TextEditingController address = new TextEditingController();
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String? _email, _password;
+
+  bool _showPassword = true;
+
+  void _toggleShow() {
+    setState(() {
+      _showPassword = !_showPassword;
+    });
+  }
 
   void validateInput() {
     if (formKey.currentState!.validate()) {
@@ -258,7 +265,7 @@ class _registerPageState extends State<registerPage> {
           style: TextStyle(
             fontWeight: FontWeight.w500,
           ),
-          obscureText: true,
+          obscureText: _showPassword,
           validator: MultiValidator(
             [
               RequiredValidator(
@@ -266,12 +273,21 @@ class _registerPageState extends State<registerPage> {
               ),
               MinLengthValidator(
                 8,
-                errorText: "Password should be at least 8 characters",
+                errorText: "Min. 8 characters",
               )
             ],
           ),
           textInputAction: TextInputAction.done,
           decoration: InputDecoration(
+            suffixIcon: IconButton(
+              icon: Icon(_showPassword
+                  ? Icons.visibility_off_outlined
+                  : Icons.visibility_outlined),
+              onPressed: _toggleShow,
+              color: Color(_showPassword ? 0xFF817E7E : 0xFFF5C901),
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+            ),
             errorStyle: TextStyle(
               fontWeight: FontWeight.w500,
             ),

@@ -57,6 +57,15 @@ class cartController extends GetxController {
     _foods.clear();
   }
 
+  get foodList2=>_foods.entries
+        .map((food) =>
+            food.value.toString() +
+            ' ' +
+            food.key.name.toString() +
+            ' ' +
+            (food.key.price * food.value).toString())
+        .toList();
+
   foodlist() {
     var list = _foods.entries
         .map((food) =>

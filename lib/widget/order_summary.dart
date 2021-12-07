@@ -6,7 +6,7 @@ import 'dart:convert';
 import '../../widget/widgets.dart';
 
 class orderSummary extends StatefulWidget {
-  const orderSummary({ Key? key }) : super(key: key);
+  const orderSummary({Key? key}) : super(key: key);
 
   @override
   _orderSummaryState createState() => _orderSummaryState();
@@ -35,7 +35,7 @@ class _orderSummaryState extends State<orderSummary> {
     }
   }
 
-    createAlertDialog(BuildContext context2) {
+  createAlertDialog(BuildContext context2) {
     return showDialog(
       context: context2,
       builder: (context2) {
@@ -56,10 +56,33 @@ class _orderSummaryState extends State<orderSummary> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child : Column(
+        child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         customAppBar(Icons.arrow_back_ios_new_outlined),
+        SizedBox(
+          height: 400,
+          child: ListView.builder(
+              itemCount: controller.foodList2.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  child: Center(
+                      child: Text('${controller.foodList2[index]}',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ))),
+                );
+              }),
+        ),
+        Text(
+                  'total ${controller.getTotal()}',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
         orderButton2(context),
       ],
     ));
@@ -71,8 +94,6 @@ class _orderSummaryState extends State<orderSummary> {
       child: TextButton(
           onPressed: () {
             createAlertDialog(context);
-           
-
           },
           child: Text('Order',
               style: TextStyle(
@@ -90,7 +111,7 @@ class _orderSummaryState extends State<orderSummary> {
     );
   }
 
-   Widget ConfirmButton(BuildContext context2 ){
+  Widget ConfirmButton(BuildContext context2) {
     return Container(
       padding: EdgeInsets.fromLTRB(0, 50, 0, 30),
       child: TextButton(
