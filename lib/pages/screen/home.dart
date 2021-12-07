@@ -12,94 +12,97 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final resto = Restaurant.generateRestaurant();
-
-  List<Restaurant> restaurantName = [
-    Restaurant('Ayam Bakar Pindika', 'Gandul'),
-    Restaurant('Ayam Bakar Padem', 'Gandul'),
-    Restaurant('Ayam Bakar Jonathan', 'Gandul'),
-    Restaurant('Ayam Bakar Aidan', 'Gandul'),
-    Restaurant('Ayam Bakar Omar', 'Gandul'),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    double c_width = MediaQuery.of(context).size.width * 0.65;
     return SingleChildScrollView(
-      child: Stack(
+      child: Column(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              color: Color(0xFFF5C901),
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(40),
+          Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: Color(0xFFF5C901),
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(40),
+                  ),
+                ),
+                height: 200,
               ),
-            ),
-            height: 200,
+              Padding(
+                padding: EdgeInsets.fromLTRB(30, 30, 30, 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Image.asset(
+                          'assets/images/splash.png',
+                          height: 60,
+                        ),
+                        SizedBox(width: 20),
+                        Text(
+                          'Masak.in',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 24,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    Row(children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: c_width,
+                            child: Text(
+                              'Hello, ${widget.accounts[0].name}',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 24,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            'What do you want to eat today ?',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Container(
+                              height: 50,
+                              width: 50,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.fitHeight,
+                                  image: NetworkImage(
+                                      widget.accounts[0].profilePicture),
+                                ),
+                              )),
+                        ),
+                      ),
+                    ]),
+                  ],
+                ),
+              ),
+            ],
           ),
           Padding(
-            padding: EdgeInsets.fromLTRB(30, 30, 30, 0),
+            padding: const EdgeInsets.fromLTRB(30, 30, 30, 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Image.asset(
-                      'assets/images/splash.png',
-                      height: 60,
-                    ),
-                    SizedBox(width: 20),
-                    Text(
-                      'Masak.in',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 24,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20),
-                Row(children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Hello, ${widget.accounts[0].name}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 24,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        'What do you want to eat today ?',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(width: 20),
-                  Expanded(
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color(0xFFF4B100),
-                          boxShadow: kElevationToShadow[6],
-                        ),
-                        child: Icon(
-                          Icons.account_circle_outlined,
-                          size: 50,
-                        ),
-                      ),
-                    ),
-                  ),
-                ]),
-                SizedBox(height: 20),
-                SizedBox(height: 20),
                 Padding(
                   padding: EdgeInsets.only(left: 10),
                   child: Text(
@@ -110,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 7),
+                SizedBox(height: 10),
                 carouselSlider(),
                 SizedBox(height: 20),
                 Padding(
@@ -118,12 +121,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Row(
                     children: [
                       Icon(
-                        Icons.location_on_outlined,
+                        Icons.history,
                         size: 24,
                       ),
                       SizedBox(width: 10),
                       Text(
-                        'Available Restaurant',
+                        'History',
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
@@ -133,22 +136,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                // Column(
-                //   children: restaurantName
-                //       .map((name) => Text('${name.name} - ${name.address}'))
-                //       .toList(),
-                // ),
                 SizedBox(
-                  height: 15,
+                  height: 10,
                 ),
                 buildRestaurant(),
                 buildRestaurant(),
                 buildRestaurant(),
                 buildRestaurant(),
                 buildRestaurant(),
-                SizedBox(
-                  height: 15,
-                )
               ],
             ),
           ),
@@ -185,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  resto.name,
+                  'resto.name,',
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 20,

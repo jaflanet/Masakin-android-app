@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class customAppBar extends StatelessWidget {
   final IconData leftIcon;
+
   final Function? leftCallback;
   customAppBar(this.leftIcon, {this.leftCallback});
 
@@ -13,8 +14,10 @@ class customAppBar extends StatelessWidget {
         left: 25,
         right: 25,
       ),
-      child: GestureDetector(
-        onTap: leftCallback != null ? () => leftCallback!() : null,
+      child: TextButton(
+        onPressed: () {
+        Navigator.pushReplacementNamed(context, '/mainPage');
+         },
         child: Container(
           padding: EdgeInsets.all(8),
           decoration: BoxDecoration(

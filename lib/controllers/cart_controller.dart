@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:get/get.dart';
 import '../../widget/widgets.dart';
 
@@ -17,6 +19,7 @@ class cartController extends GetxController {
       "you've add the ${food.name} to the cart",
       snackPosition: SnackPosition.TOP,
       duration: Duration(seconds: 2),
+      backgroundColor: Color(0xFFFF8023).withOpacity(0.8),
     );
   }
 
@@ -32,6 +35,7 @@ class cartController extends GetxController {
       "you've removed the ${food.name} to the cart",
       snackPosition: SnackPosition.TOP,
       duration: Duration(seconds: 2),
+      backgroundColor: Color(0xFFFF8023).withOpacity(0.8),
     );
   }
 
@@ -51,5 +55,26 @@ class cartController extends GetxController {
 
   clearList() {
     _foods.clear();
+  }
+
+  get foodList2=>_foods.entries
+        .map((food) =>
+            food.value.toString() +
+            ' ' +
+            food.key.name.toString() +
+            ' ' +
+            (food.key.price * food.value).toString())
+        .toList();
+
+  foodlist() {
+    var list = _foods.entries
+        .map((food) =>
+            food.value.toString() +
+            ' ' +
+            food.key.name.toString() +
+            ' ' +
+            (food.key.price * food.value).toString())
+        .toList();
+    return list;
   }
 }

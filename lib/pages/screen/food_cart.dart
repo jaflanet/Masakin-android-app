@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:masakin_app/widget/cart_total.dart';
 import '../../widget/widgets.dart';
 
 class foodCart extends StatelessWidget {

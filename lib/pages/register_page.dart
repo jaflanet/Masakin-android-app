@@ -19,7 +19,14 @@ class _registerPageState extends State<registerPage> {
   TextEditingController address = new TextEditingController();
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String? _email, _password;
+
+  bool _showPassword = true;
+
+  void _toggleShow() {
+    setState(() {
+      _showPassword = !_showPassword;
+    });
+  }
 
   void validateInput() {
     if (formKey.currentState!.validate()) {
@@ -165,204 +172,246 @@ class _registerPageState extends State<registerPage> {
   }
 
   Widget buildName() => Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(37),
-        color: Colors.white,
-        border: Border.all(
-          color: Color(0xFFF5C901),
-          width: 2,
-        ),
-        boxShadow: kElevationToShadow[6],
-      ),
-      child: Container(
-          padding: EdgeInsets.only(left: 16, right: 16),
           child: TextFormField(
-            controller: name,
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
+        controller: name,
+        style: TextStyle(
+          fontWeight: FontWeight.w500,
+        ),
+        validator: RequiredValidator(errorText: "Required"),
+        textInputAction: TextInputAction.done,
+        decoration: InputDecoration(
+          errorStyle: TextStyle(
+            fontWeight: FontWeight.w500,
+          ),
+          hintText: 'Name',
+          hintStyle: TextStyle(
+            color: Color(0xFF817E7E),
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
+          ),
+          fillColor: Colors.white,
+          filled: true,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(37),
+            borderSide: BorderSide(
+              color: Color(0xFFF5C901),
+              width: 2,
             ),
-            validator: RequiredValidator(errorText: "Required"),
-            textInputAction: TextInputAction.done,
-            decoration: InputDecoration(
-                errorStyle: TextStyle(
-                  fontWeight: FontWeight.w500,
-                ),
-                hintText: 'Name',
-                hintStyle: TextStyle(
-                  color: Color(0xFF817E7E),
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                ),
-                border: InputBorder.none),
-          )));
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(37),
+            borderSide: BorderSide(
+              color: Color(0xFFF5C901),
+              width: 2,
+            ),
+          ),
+          contentPadding: const EdgeInsets.all(16),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(37),
+          ),
+        ),
+      ));
 
   Widget buildEmail() => Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(37),
-          color: Colors.white,
-          border: Border.all(
-            color: Color(0xFFF5C901),
-            width: 2,
+        child: TextFormField(
+          controller: email,
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
           ),
-          boxShadow: kElevationToShadow[6],
-        ),
-        child: Container(
-          padding: EdgeInsets.only(
-            left: 16,
-            right: 16,
+          validator: MultiValidator(
+            [
+              RequiredValidator(errorText: "Required"),
+              EmailValidator(errorText: "Not a valid email"),
+            ],
           ),
-          child: TextFormField(
-            controller: email,
-            style: TextStyle(
+          textInputAction: TextInputAction.done,
+          decoration: InputDecoration(
+            errorStyle: TextStyle(
               fontWeight: FontWeight.w500,
             ),
-            validator: MultiValidator(
-              [
-                RequiredValidator(errorText: "Required"),
-                EmailValidator(errorText: "Not a valid email"),
-              ],
+            hintText: 'Email',
+            hintStyle: TextStyle(
+              color: Color(0xFF817E7E),
+              fontWeight: FontWeight.w500,
+              fontSize: 16,
             ),
-            textInputAction: TextInputAction.done,
-            decoration: InputDecoration(
-                errorStyle: TextStyle(
-                  fontWeight: FontWeight.w500,
-                ),
-                hintText: 'Email',
-                hintStyle: TextStyle(
-                  color: Color(0xFF817E7E),
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                ),
-                border: InputBorder.none),
+            fillColor: Colors.white,
+            filled: true,
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(37),
+              borderSide: BorderSide(
+                color: Color(0xFFF5C901),
+                width: 2,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(37),
+              borderSide: BorderSide(
+                color: Color(0xFFF5C901),
+                width: 2,
+              ),
+            ),
+            contentPadding: const EdgeInsets.all(16),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(37),
+            ),
           ),
         ),
       );
 
   Widget buildPassword() => Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(37),
-          color: Colors.white,
-          border: Border.all(
-            color: Color(0xFFF5C901),
-            width: 2,
+        child: TextFormField(
+          controller: password,
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
           ),
-          boxShadow: kElevationToShadow[6],
-        ),
-        child: Container(
-          padding: EdgeInsets.only(
-            left: 16,
-            right: 16,
+          obscureText: _showPassword,
+          validator: MultiValidator(
+            [
+              RequiredValidator(
+                errorText: "Required",
+              ),
+              MinLengthValidator(
+                8,
+                errorText: "Min. 8 characters",
+              )
+            ],
           ),
-          child: TextFormField(
-            controller: password,
-            style: TextStyle(
+          textInputAction: TextInputAction.done,
+          decoration: InputDecoration(
+            suffixIcon: IconButton(
+              icon: Icon(_showPassword
+                  ? Icons.visibility_off_outlined
+                  : Icons.visibility_outlined),
+              onPressed: _toggleShow,
+              color: Color(_showPassword ? 0xFF817E7E : 0xFFF5C901),
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+            ),
+            errorStyle: TextStyle(
               fontWeight: FontWeight.w500,
             ),
-            obscureText: true,
-            validator: MultiValidator(
-              [
-                RequiredValidator(
-                  errorText: "Required",
-                ),
-                MinLengthValidator(
-                  8,
-                  errorText: "Password should be at least 8 characters",
-                )
-              ],
+            hintText: 'Password',
+            hintStyle: TextStyle(
+              color: Color(0xFF817E7E),
+              fontWeight: FontWeight.w500,
+              fontSize: 16,
             ),
-            textInputAction: TextInputAction.done,
-            decoration: InputDecoration(
-                errorStyle: TextStyle(
-                  fontWeight: FontWeight.w500,
-                ),
-                hintText: 'Password',
-                hintStyle: TextStyle(
-                  color: Color(0xFF817E7E),
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                ),
-                border: InputBorder.none),
+            fillColor: Colors.white,
+            filled: true,
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(37),
+              borderSide: BorderSide(
+                color: Color(0xFFF5C901),
+                width: 2,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(37),
+              borderSide: BorderSide(
+                color: Color(0xFFF5C901),
+                width: 2,
+              ),
+            ),
+            contentPadding: const EdgeInsets.all(16),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(37),
+            ),
           ),
         ),
       );
 
   Widget buildPhoneNumber() => Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(37),
-          color: Colors.white,
-          border: Border.all(
-            color: Color(0xFFF5C901),
-            width: 2,
+        child: TextFormField(
+          controller: accPhoneNumber,
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
           ),
-          boxShadow: kElevationToShadow[6],
-        ),
-        child: Container(
-          padding: EdgeInsets.only(
-            left: 16,
-            right: 16,
+          keyboardType: TextInputType.phone,
+          validator: MultiValidator(
+            [
+              RequiredValidator(
+                errorText: "Required",
+              ),
+            ],
           ),
-          child: TextFormField(
-            controller: accPhoneNumber,
-            style: TextStyle(
+          textInputAction: TextInputAction.done,
+          decoration: InputDecoration(
+            errorStyle: TextStyle(
               fontWeight: FontWeight.w500,
             ),
-            keyboardType: TextInputType.phone,
-            validator: MultiValidator(
-              [
-                RequiredValidator(
-                  errorText: "Required",
-                ),
-              ],
+            hintText: 'Phone Number',
+            hintStyle: TextStyle(
+              color: Color(0xFF817E7E),
+              fontWeight: FontWeight.w500,
+              fontSize: 16,
             ),
-            textInputAction: TextInputAction.done,
-            decoration: InputDecoration(
-                errorStyle: TextStyle(
-                  fontWeight: FontWeight.w500,
-                ),
-                hintText: 'Phone Number',
-                hintStyle: TextStyle(
-                  color: Color(0xFF817E7E),
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                ),
-                border: InputBorder.none),
+            fillColor: Colors.white,
+            filled: true,
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(37),
+              borderSide: BorderSide(
+                color: Color(0xFFF5C901),
+                width: 2,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(37),
+              borderSide: BorderSide(
+                color: Color(0xFFF5C901),
+                width: 2,
+              ),
+            ),
+            contentPadding: const EdgeInsets.all(16),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(37),
+            ),
           ),
         ),
       );
 
   Widget buildAddress() => Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(37),
-        color: Colors.white,
-        border: Border.all(
-          color: Color(0xFFF5C901),
-          width: 2,
-        ),
-        boxShadow: kElevationToShadow[6],
-      ),
-      child: Container(
-          padding: EdgeInsets.only(left: 16, right: 16),
           child: TextFormField(
-            controller: address,
-            keyboardType: TextInputType.multiline,
-            maxLines: null,
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
+        controller: address,
+        keyboardType: TextInputType.multiline,
+        maxLines: null,
+        style: TextStyle(
+          fontWeight: FontWeight.w500,
+        ),
+        validator: RequiredValidator(errorText: "Required"),
+        textInputAction: TextInputAction.done,
+        decoration: InputDecoration(
+          errorStyle: TextStyle(
+            fontWeight: FontWeight.w500,
+          ),
+          hintText: 'Address',
+          hintStyle: TextStyle(
+            color: Color(0xFF817E7E),
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
+          ),
+          fillColor: Colors.white,
+          filled: true,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(37),
+            borderSide: BorderSide(
+              color: Color(0xFFF5C901),
+              width: 2,
             ),
-            validator: RequiredValidator(errorText: "Required"),
-            textInputAction: TextInputAction.done,
-            decoration: InputDecoration(
-                errorStyle: TextStyle(
-                  fontWeight: FontWeight.w500,
-                ),
-                hintText: 'Address',
-                hintStyle: TextStyle(
-                  color: Color(0xFF817E7E),
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                ),
-                border: InputBorder.none),
-          )));
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(37),
+            borderSide: BorderSide(
+              color: Color(0xFFF5C901),
+              width: 2,
+            ),
+          ),
+          contentPadding: const EdgeInsets.all(16),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(37),
+          ),
+        ),
+      ));
 
   Widget buildButtonSignUp() => TextButton(
         onPressed: () {

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,11 +15,16 @@ class loginPage extends StatefulWidget {
 }
 
 class _loginPageState extends State<loginPage> {
-  String? _email, _password;
-
   TextEditingController email = new TextEditingController();
   TextEditingController password = new TextEditingController();
-  bool _isLoading = false;
+
+  bool _showPassword = true;
+
+  void _toggleShow() {
+    setState(() {
+      _showPassword = !_showPassword;
+    });
+  }
 
   login(String email, pass) async {
     final SharedPreferences sharedPreferences =
@@ -37,7 +43,13 @@ class _loginPageState extends State<loginPage> {
     jsonResponse = json.decode(response.body);
     if (jsonResponse.length == 0) {
       setState(() {
-        print("login failed");
+        Get.snackbar(
+          "Login Failed",
+          "Invalid Email or Password",
+          snackPosition: SnackPosition.TOP,
+          duration: Duration(seconds: 2),
+          backgroundColor: Color(0xFFFF8023).withOpacity(0.8),
+        );
       });
     } else {
       sharedPreferences.setString('email', email);
@@ -49,6 +61,7 @@ class _loginPageState extends State<loginPage> {
 
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
+  bool _isLoading = false;
   void validateInput() {
     if (formkey.currentState!.validate()) {
       setState(() {
@@ -62,7 +75,6 @@ class _loginPageState extends State<loginPage> {
 
   @override
   Widget build(BuildContext context) {
-    var doLogin = () {};
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -144,62 +156,92 @@ class _loginPageState extends State<loginPage> {
   }
 
   Widget buildEmail() => Container(
-        child: Container(
-            padding: EdgeInsets.only(left: 16, right: 16),
-            child: TextFormField(
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-              ),
-              controller: email,
-              validator: RequiredValidator(errorText: "Required"),
-              textInputAction: TextInputAction.done,
-              decoration: InputDecoration(
-                  errorStyle: TextStyle(
-                    fontWeight: FontWeight.w500,
-                  ),
-                  hintText: 'Email',
-                  hintStyle: TextStyle(
-                    color: Color(0xFF817E7E),
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                  ),
-                  border: InputBorder.none),
-            )),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(37),
-            color: Colors.white,
-            border: Border.all(color: Color(0xFFF5C901), width: 2),
-            boxShadow: kElevationToShadow[6]),
-      );
-
-  Widget buildPassword() => Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(37),
-          color: Colors.white,
-          border: Border.all(color: Color(0xFFF5C901), width: 2),
-          boxShadow: kElevationToShadow[6]),
-      child: Container(
-          padding: EdgeInsets.only(left: 16, right: 16),
-          child: TextFormField(
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-            ),
-            controller: password,
-            obscureText: true,
+        child: TextFormField(
+            style: TextStyle(fontWeight: FontWeight.w500),
+            controller: email,
             validator: RequiredValidator(errorText: "Required"),
             textInputAction: TextInputAction.done,
             decoration: InputDecoration(
-                errorStyle: TextStyle(
-                  fontWeight: FontWeight.w500,
+              errorStyle: TextStyle(
+                fontWeight: FontWeight.w500,
+              ),
+              hintText: 'Email',
+              hintStyle: TextStyle(
+                color: Color(0xFF817E7E),
+                fontWeight: FontWeight.w500,
+                fontSize: 16,
+              ),
+              fillColor: Colors.white,
+              filled: true,
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(37),
+                borderSide: BorderSide(
+                  color: Color(0xFFF5C901),
+                  width: 2,
                 ),
-                hintText: 'Password',
-                hintStyle: TextStyle(
-                  color: Color(0xFF817E7E),
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(37),
+                borderSide: BorderSide(
+                  color: Color(0xFFF5C901),
+                  width: 2,
                 ),
-                border: InputBorder.none),
-          )));
+              ),
+              contentPadding: const EdgeInsets.all(16),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(37),
+              ),
+            )),
+      );
+
+  Widget buildPassword() => Container(
+          child: TextFormField(
+        style: TextStyle(fontWeight: FontWeight.w500),
+        controller: password,
+        obscureText: _showPassword,
+        validator: RequiredValidator(errorText: "Required"),
+        textInputAction: TextInputAction.done,
+        decoration: InputDecoration(
+          suffixIcon: IconButton(
+            icon: Icon(_showPassword
+                ? Icons.visibility_off_outlined
+                : Icons.visibility_outlined),
+            onPressed: _toggleShow,
+            color: Color(_showPassword ? 0xFF817E7E : 0xFFF5C901),
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+          ),
+          errorStyle: TextStyle(
+            fontWeight: FontWeight.w500,
+          ),
+          hintText: 'Password',
+          hintStyle: TextStyle(
+            color: Color(0xFF817E7E),
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
+          ),
+          fillColor: Colors.white,
+          filled: true,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(37),
+            borderSide: BorderSide(
+              color: Color(0xFFF5C901),
+              width: 2,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(37),
+            borderSide: BorderSide(
+              color: Color(0xFFF5C901),
+              width: 2,
+            ),
+          ),
+          contentPadding: const EdgeInsets.all(16),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(37),
+          ),
+        ),
+      ));
 
   Widget buildButtonLogin() => TextButton(
       onPressed: () {
