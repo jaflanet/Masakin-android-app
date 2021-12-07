@@ -55,7 +55,7 @@ class _MainPage extends State<MainPage> {
 
     for (var u in jsonData) {
       Account account = Account(u['name'], u['email'], u['accPhoneNumber'],
-          u['profilePicture'], u['address']);
+          u['profilePicture'], u['address'], u['accountType']);
       accounts.add(account);
       print(accounts);
     }

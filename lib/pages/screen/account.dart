@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:masakin_app/pages/adminScreen/add_menu.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -82,6 +83,7 @@ class _AccountScreenState extends State<AccountScreen> {
                   buildEmailText(widget.accounts[0].email),
                   buildPhoneNum(widget.accounts[0].accPhoneNumber),
                   buildAddrText(widget.accounts[0].address),
+                  buildAddMenu(widget.accounts[0].accountType),
                   buildButtonSignUp(),
                 ],
               )),
@@ -257,11 +259,46 @@ class _AccountScreenState extends State<AccountScreen> {
       ),
     );
   }
+
+  Container buildAddMenu(accountType) {
+    if (accountType == 'ADMINISTRATOR') {
+      return Container(
+        padding: EdgeInsets.fromLTRB(0, 50, 0, 30),
+        child: TextButton(
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, '/addMenu');
+          },
+          child: Text('Add menu',
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              )),
+          style: TextButton.styleFrom(
+            elevation: 6,
+            shadowColor: Colors.black,
+            padding: EdgeInsets.fromLTRB(55.0, 8.0, 55.0, 8.0),
+            backgroundColor: Color(0xFFF5C901),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(37),
+            ),
+          ),
+        ),
+      );
+    } else {
+      return Container();
+    }
+  }
 }
 
 class Account {
-  final String name, email, accPhoneNumber, profilePicture, address;
+  final String name,
+      email,
+      accPhoneNumber,
+      profilePicture,
+      address,
+      accountType;
 
   Account(this.name, this.email, this.accPhoneNumber, this.profilePicture,
-      this.address);
+      this.address, this.accountType);
 }

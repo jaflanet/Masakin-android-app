@@ -4,6 +4,7 @@ import 'package:masakin_app/pages/adminScreen/add_menu.dart';
 import 'package:masakin_app/pages/adminScreen/add_restaurant.dart';
 import 'package:masakin_app/pages/login_page.dart';
 import 'package:masakin_app/pages/register_page.dart';
+import 'package:masakin_app/pages/screen/account.dart';
 import 'package:masakin_app/pages/screen/section/restaurant_menu.dart';
 import 'pages/main_page.dart';
 import 'package:flutter/services.dart';

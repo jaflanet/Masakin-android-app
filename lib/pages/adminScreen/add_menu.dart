@@ -79,9 +79,9 @@ class _addMenuState extends State<addMenu> {
 
   Widget buildButtonBack() => TextButton(
       onPressed: () {
-        Navigator.pushReplacementNamed(context, '/addResto');
+        Navigator.pushReplacementNamed(context, '/account');
       },
-      child: Text('Submit',
+      child: Text('Back',
           style: TextStyle(
               fontSize: 15, color: Colors.white, fontFamily: 'Montserrat')),
       style: TextButton.styleFrom(
