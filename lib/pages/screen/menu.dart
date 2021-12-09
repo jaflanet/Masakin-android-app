@@ -74,53 +74,6 @@ class _MenuScreenState extends State<MenuScreen> {
             ),
           ],
         ),
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: TextField(
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: Colors.white,
-              isDense: true,
-              prefixIcon: Icon(
-                Icons.search,
-                size: 24,
-                color: Color(0xFFF5C901),
-              ),
-              hintText: 'Search here..',
-              hintStyle: TextStyle(
-                color: Color(0xFF817E7E),
-                fontWeight: FontWeight.w500,
-                fontSize: 16,
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(37),
-                borderSide: BorderSide(
-                  color: Color(0xFFF5C901),
-                  width: 2,
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(37),
-                borderSide: BorderSide(
-                  color: Color(0xFFF5C901),
-                  width: 2,
-                ),
-              ),
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(25, 0, 0, 20),
-          child: Container(
-            child: Text(
-              'Menu',
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 20,
-              ),
-            ),
-          ),
-        ),
         Expanded(child: FoodList()),
       ],
     );

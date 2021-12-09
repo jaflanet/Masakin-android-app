@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:get/get.dart';
+import 'package:masakin_app/models/food.dart';
 import '../../widget/widgets.dart';
 
 class cartController extends GetxController {
@@ -16,7 +17,7 @@ class cartController extends GetxController {
 
     Get.snackbar(
       "Food Added",
-      "you've add the ${food.name} to the cart",
+      "you've add the ${food.menuTitle} to the cart",
       snackPosition: SnackPosition.TOP,
       duration: Duration(seconds: 2),
       backgroundColor: Color(0xFFFF8023).withOpacity(0.8),
@@ -32,7 +33,7 @@ class cartController extends GetxController {
 
     Get.snackbar(
       "Food Removed",
-      "you've removed the ${food.name} to the cart",
+      "you've removed the ${food.menuTitle} to the cart",
       snackPosition: SnackPosition.TOP,
       duration: Duration(seconds: 2),
       backgroundColor: Color(0xFFFF8023).withOpacity(0.8),
@@ -61,7 +62,7 @@ class cartController extends GetxController {
         .map((food) =>
             food.value.toString() +
             ' ' +
-            food.key.name.toString() +
+            food.key.menuTitle.toString() +
             ' ' +
             (food.key.price * food.value).toString())
         .toList();
@@ -71,7 +72,7 @@ class cartController extends GetxController {
         .map((food) =>
             food.value.toString() +
             ' ' +
-            food.key.name.toString() +
+            food.key.menuTitle.toString() +
             ' ' +
             (food.key.price * food.value).toString())
         .toList();

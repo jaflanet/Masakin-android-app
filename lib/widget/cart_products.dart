@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:masakin_app/controllers/cart_controller.dart';
+import 'package:masakin_app/models/food.dart';
 import 'food_list.dart';
 
 class CartProducts extends StatelessWidget {
@@ -52,7 +53,7 @@ class CartProductCard extends StatelessWidget {
           CircleAvatar(
             radius: 30,
             backgroundImage: NetworkImage(
-              food.imgUrl,
+              food.photo,
             ),
           ),
           SizedBox(
@@ -62,7 +63,7 @@ class CartProductCard extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  food.name,
+                  food.menuTitle,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,

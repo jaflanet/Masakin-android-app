@@ -1,11 +1,15 @@
+import 'dart:ffi';
 import 'package:flutter/material.dart';
+import 'package:masakin_app/api/food_api.dart';
 import 'package:masakin_app/controllers/cart_controller.dart';
-// import 'package:masakin_app/models/food.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:masakin_app/models/food.dart';
+import 'package:masakin_app/widget/search_widget.dart';
 import '../../widget/widgets.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'dart:async';
 
 class FoodList extends StatefulWidget {
   @override
@@ -13,164 +17,156 @@ class FoodList extends StatefulWidget {
 }
 
 class _FoodList extends State<FoodList> {
+  List<Food> foods = [];
+  String query = '';
   final CartController = Get.put(cartController());
-  Future getMenuData() async {
-    var response =
-        await http.get(Uri.https('masakin-rpl.herokuapp.com', 'menu'));
-    var jsonData = jsonDecode(response.body);
-    List<Food> menus = [];
+  Timer? debouncer;
+  bool loading = true;
 
-    for (var u in jsonData) {
-      Food menu = Food(u['photo'], u['menuTitle'], u['price']);
-      menus.add(menu);
+  @override
+  void initState() {
+    super.initState();
+    init();
+  }
+
+  @override
+  void dispose() {
+    debouncer?.cancel();
+    super.dispose();
+  }
+
+  void debounce(
+    VoidCallback callback, {
+    Duration duration = const Duration(milliseconds: 1000),
+  }) {
+    if (debouncer != null) {
+      debouncer!.cancel();
     }
-    print(menus.length);
-    return menus;
+
+    debouncer = Timer(duration, callback);
+  }
+
+  Future init() async {
+    foods = await FoodApi.getFoods(query);
+
+    setState(() => this.foods = foods);
+    setState(() => loading = false);
   }
 
   @override
   Widget build(BuildContext context) {
-    double c_width = MediaQuery.of(context).size.width * 0.4;
-    return FutureBuilder(
-        future: getMenuData(),
-        builder: (context, snapshot) {
-          if (snapshot.data == null) {
-            return Container(
-                child: SpinKitCircle(
-              color: Color(0xFFF5C901),
-            ));
-          } else {
-            var dataMenu = (snapshot.data as List<Food>).toList();
-            return ListView.builder(
-              itemCount: dataMenu.length,
-              itemBuilder: (context, i) {
-                return Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 5, 20, 15),
+    return loading
+        ? Container(
+            child: SpinKitCircle(
+            color: Color(0xFFF5C901),
+          ))
+        : Scaffold(
+            body: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(25, 0, 0, 20),
                   child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
-                      boxShadow: kElevationToShadow[1],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            child: ClipRRect(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                              child: Image.network(
-                                dataMenu[i].imgUrl,
-                                width: 80,
-                                height: 60,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 20),
-                          Container(
-                            width: c_width,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  dataMenu[i].name,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                Text(
-                                  'Rp. ${dataMenu[i].price}',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Spacer(),
-                          IconButton(
-                            onPressed: () {
-                              CartController.addItem(dataMenu[i]);
-                            },
-                            icon: Icon(
-                              Icons.add_circle,
-                            ),
-                          ),
-                        ],
+                    child: Text(
+                      'Menu',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 20,
                       ),
                     ),
                   ),
-                );
-              },
-            );
-          }
-        });
+                ),
+                buildSearch(),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: foods.length,
+                    itemBuilder: (context, index) {
+                      final food = foods[index];
+                      return listFood(food);
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
   }
 
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Flexible(
-  //       child: ListView.builder(
-  //           itemCount: dataMenu.length,
-  //           itemBuilder: (BuildContext context, int index) {
-  //             return foodListCard(index: index);
-  //           }));
-  // }
-}
+  Widget buildSearch() => SearchWidget(
+        text: query,
+        hintText: 'Search here..',
+        onChanged: searchFood,
+      );
 
-// class foodListCard extends StatelessWidget {
-//   final CartController = Get.put(cartController());
-//   final int index;
-//   foodListCard({
-//     Key? key,
-//     required this.index,
-//   }) : super(key: key);
+  Future searchFood(String query) async => debounce(() async {
+        final foods = await FoodApi.getFoods(query);
+        if (!mounted) return;
+        setState(() {
+          this.query = query;
+          this.foods = foods;
+        });
+        setState(() => loading = false);
+      });
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-//       child: Row(
-//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//         children: [
-//           CircleAvatar(
-//             radius: 30,
-//             backgroundImage: NetworkImage(Food.generatedFood[index].imgUrl),
-//           ),
-//           SizedBox(width: 20),
-//           Expanded(
-//             child: Text(
-//               Food.generatedFood[index].name,
-//               style: TextStyle(
-//                 fontWeight: FontWeight.bold,
-//                 fontSize: 16,
-//               ),
-//             ),
-//           ),
-//           Expanded(
-//             child: Text('${Food.generatedFood[index].price}'),
-//           ),
-//           IconButton(
-//               onPressed: () {
-//                 CartController.addItem(Food.generatedFood[index]);
-//               },
-//               icon: Icon(
-//                 Icons.add_circle,
-//               )),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-class Food {
-  final String imgUrl;
-  final String name;
-  final num price;
-
-  Food(this.imgUrl, this.name, this.price);
+  Widget listFood(Food food) {
+    double c_width = MediaQuery.of(context).size.width * 0.4;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 5, 20, 15),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+          boxShadow: kElevationToShadow[1],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  child: Image.network(
+                    food.photo,
+                    width: 80,
+                    height: 60,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              SizedBox(width: 20),
+              Container(
+                width: c_width,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      food.menuTitle,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    Text(
+                      'Rp. ${food.price}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Spacer(),
+              IconButton(
+                onPressed: () {
+                  CartController.addItem(food);
+                },
+                icon: Icon(
+                  Icons.add_circle,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
