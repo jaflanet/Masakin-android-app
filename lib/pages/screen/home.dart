@@ -84,6 +84,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 50,
                               width: 50,
                               decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.black, width: 1.5),
+                                shape: BoxShape.circle,
                                 image: DecorationImage(
                                   fit: BoxFit.fitHeight,
                                   image: NetworkImage(
