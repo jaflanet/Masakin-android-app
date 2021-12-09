@@ -46,59 +46,71 @@ class CartProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          CircleAvatar(
-            radius: 30,
-            backgroundImage: NetworkImage(
-              food.photo,
-            ),
-          ),
-          SizedBox(
-            width: 20,
-          ),
-          Expanded(
-            child: Column(
-              children: [
-                Text(
-                  food.menuTitle,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
+      padding: const EdgeInsets.fromLTRB(20, 5, 20, 15),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+          boxShadow: kElevationToShadow[1],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                child: Image.network(
+                  food.photo,
+                  width: 80,
+                  height: 60,
+                  fit: BoxFit.cover,
                 ),
-                Text(
-                  '${food.price}',
-                  style: TextStyle(
-                    fontSize: 14,
-                  ),
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      food.menuTitle,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    Text(
+                      'Rp. ${food.price}',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              IconButton(
+                onPressed: () {
+                  controller.removeItem(food);
+                },
+                icon: Icon(
+                  Icons.remove_circle,
+                ),
+              ),
+              Text('${quantity}'),
+              IconButton(
+                onPressed: () {
+                  controller.addItem(food);
+                },
+                icon: Icon(
+                  Icons.add_circle,
+                ),
+              ),
+            ],
           ),
-          // Expanded(
-          //   child: Text('${Food.generatedFood[index].price}'),
-          // ),
-          IconButton(
-            onPressed: () {
-              controller.removeItem(food);
-            },
-            icon: Icon(
-              Icons.remove_circle,
-            ),
-          ),
-          Text('${quantity}'),
-          IconButton(
-            onPressed: () {
-              controller.addItem(food);
-            },
-            icon: Icon(
-              Icons.add_circle,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
