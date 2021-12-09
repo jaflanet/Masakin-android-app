@@ -54,7 +54,7 @@ class _addMenuState extends State<addMenu> {
 
   Future getImage() async {
     image = await ImagePicker().pickImage(source: ImageSource.gallery);
-    // _image == null ? Text('No image selected.') : Image.file(_image);
+    image == null ? Text('No image selected.') : Image.file(image);
   }
 
   Future postMenu(
@@ -71,7 +71,7 @@ class _addMenuState extends State<addMenu> {
     }, {
       'image': image
     });
-    print("res-1 $res1");
+    print("upload $res1");
     setState(() {
       _image = image as File;
     });
@@ -100,7 +100,6 @@ class _addMenuState extends State<addMenu> {
                     ],
                   ),
                   SizedBox(height: 50),
-                  // buildUploadPhoto(),
                   TextButton(onPressed: getImage, child: Text('upload')),
                   SizedBox(height: 20),
                   buildTitle(),
@@ -109,68 +108,12 @@ class _addMenuState extends State<addMenu> {
                   SizedBox(height: 20),
                   buildDescription(),
                   SizedBox(height: 20),
-                  // buildType(),
                   buildType(),
                   SizedBox(height: 30),
                   buildButtonSubmit(),
                   // buildButtonBack(),
-                ]
-                    // child: TextButton(
-                    //     child: const Text("add menu"),
-                    //     onPressed: () {
-                    //       Navigator.pushReplacementNamed(context, '/addMenu');
-                    //     }),
-                    ))));
-    // return Container(
-    //    child: TextButton(
-    //       child: const Text("back to add resto"),
-    //       onPressed: () {
-    //         Navigator.pushReplacementNamed(context, '/addResto');
-    //       }),
-    // );
+                ]))));
   }
-
-  // Widget buildUploadPhoto() => FloatingActionButton.extended(
-  //     label: Text("halo"),
-  //     onPressed: () async {
-  //       late XFile image;
-  //       var imagePicker =
-  //           await ImagePicker().pickImage(source: ImageSource.gallery);
-  //       if (imagePicker != null) {
-  //         setState(() {
-  //           print("ada foto");
-  //           image = imagePicker;
-  //         });
-  //       } else {
-  //         print("gaada foto");
-  //       }
-  //       try {
-  //         String filename = image.path.split('/').last;
-  //         FormData formData = new FormData.fromMap({
-  //           "image": await MultipartFile.fromFile(image.path,
-  //               filename: filename, contentType: new MediaType('image', 'png')),
-  //           "type": "image/png"
-  //         });
-  //         Response response = await dio.post(
-  //             "http://masakin-rpl.herokuapp.com/menu",
-  //             data: formData,
-  //             options: Options(headers: {
-  //               "accept": "application/json",
-  //               "Content-Type": "multipart/form-data"
-  //             }));
-  //       } catch (e) {
-  //         print(e);
-  //       }
-  //     });
-
-  // Widget buildUploadPhoto() => Center(
-  //       child: _image == null ? Text('No image selected.') : Image.file(_image),
-  //     );
-  //   floatingActionButton: FloatingActionButton(
-  //   onPressed: getImage,
-  //   tooltip: 'Pick Image',
-  //   child: Icon(Icons.add_a_photo),
-  // ),
 
   Widget buildButtonSubmit() => TextButton(
       onPressed: () {
@@ -285,46 +228,6 @@ class _addMenuState extends State<addMenu> {
           ),
         ),
       );
-
-// Widget buildType() => Container(
-//       child: TextFormField(
-//         decoration: InputDecoration(
-//           contentPadding: EdgeInsets.only(
-//             right: 20,
-//             left: 20,
-//           ),
-//           enabledBorder: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(27),
-//             borderSide: BorderSide(),
-//           ),
-//           focusedBorder: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(27),
-//             borderSide: BorderSide(),
-//           ),
-//           labelText: 'TYPE NANTI DROPDOWN',
-//           labelStyle: TextStyle(
-//             color: Colors.black,
-//             fontSize: 14,
-//             fontFamily: 'Montserrat',
-//           ),
-//         ),
-//       ),
-//     );
-
-// Widget buildType() => DropdownButton(
-//   hint: Text("Select type"),
-//   value: valType,
-//   icon: Icon(Icons.keyboard_arrow_down),
-//   items: items.map((String items){
-//     return DropdownMenuItem(child: Text(items),
-//     value: items,);
-//   }).toList(),
-//   onChanged: (String newValue){
-//     setState((){
-//       valType = newValue;
-//     });
-//   },
-// )
 
   Widget buildType() => Container(
         child: TextFormField(
