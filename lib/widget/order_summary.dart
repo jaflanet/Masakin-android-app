@@ -4,6 +4,7 @@ import 'package:masakin_app/controllers/cart_controller.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../../widget/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class orderSummary extends StatefulWidget {
   const orderSummary({Key? key}) : super(key: key);
@@ -13,16 +14,32 @@ class orderSummary extends StatefulWidget {
 }
 
 class _orderSummaryState extends State<orderSummary> {
+  late SharedPreferences sharedPreferences;
+  late String finalEmail;
+
+  @override
+  void initState() {
+    super.initState();
+    getEmail();
+  }
+
+  Future getEmail() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    finalEmail = sharedPreferences.getString('email')!;
+  }
+
   final cartController controller = Get.find();
 
-  order(List orderlist) async {
+  order(String orderlist, String totalprice) async {
     final response = await http.post(
-      Uri.parse('https://masakin-rpl.herokuapp.com/testOrder'),
+       Uri.parse('https://masakin-rpl.herokuapp.com/order'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, List>{
-        "orderMenu": orderlist,
+      body: jsonEncode(<String, String>{
+        "email": finalEmail,
+        "orderFood": orderlist,
+        "totalPrice": totalprice,
       }),
     );
 
@@ -116,7 +133,8 @@ class _orderSummaryState extends State<orderSummary> {
       padding: EdgeInsets.fromLTRB(0, 50, 0, 30),
       child: TextButton(
           onPressed: () {
-            order(controller.foodlist());
+            order(controller.foodlist().toString(),
+                controller.getTotal().toString());
             Navigator.pushReplacementNamed(context, '/mainPage');
             Navigator.pop(context2);
           },
