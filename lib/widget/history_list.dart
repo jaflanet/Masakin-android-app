@@ -60,7 +60,7 @@ class _OrderList extends State<OrderList> {
               itemCount: dataMenu.length,
               itemBuilder: (context, i) {
                 return Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 5, 30, 5),
+                  padding: const EdgeInsets.fromLTRB(30, 5, 30, 15),
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),

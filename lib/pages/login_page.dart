@@ -157,41 +157,42 @@ class _loginPageState extends State<loginPage> {
 
   Widget buildEmail() => Container(
         child: TextFormField(
-            style: TextStyle(fontWeight: FontWeight.w500),
-            controller: email,
-            validator: RequiredValidator(errorText: "Required"),
-            textInputAction: TextInputAction.done,
-            decoration: InputDecoration(
-              errorStyle: TextStyle(
-                fontWeight: FontWeight.w500,
+          style: TextStyle(fontWeight: FontWeight.w500),
+          controller: email,
+          validator: RequiredValidator(errorText: "Required"),
+          textInputAction: TextInputAction.done,
+          decoration: InputDecoration(
+            errorStyle: TextStyle(
+              fontWeight: FontWeight.w500,
+            ),
+            hintText: 'Email',
+            hintStyle: TextStyle(
+              color: Color(0xFF817E7E),
+              fontWeight: FontWeight.w500,
+              fontSize: 16,
+            ),
+            fillColor: Colors.white,
+            filled: true,
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(37),
+              borderSide: BorderSide(
+                color: Color(0xFFF5C901),
+                width: 2,
               ),
-              hintText: 'Email',
-              hintStyle: TextStyle(
-                color: Color(0xFF817E7E),
-                fontWeight: FontWeight.w500,
-                fontSize: 16,
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(37),
+              borderSide: BorderSide(
+                color: Color(0xFFF5C901),
+                width: 2,
               ),
-              fillColor: Colors.white,
-              filled: true,
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(37),
-                borderSide: BorderSide(
-                  color: Color(0xFFF5C901),
-                  width: 2,
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(37),
-                borderSide: BorderSide(
-                  color: Color(0xFFF5C901),
-                  width: 2,
-                ),
-              ),
-              contentPadding: const EdgeInsets.all(16),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(37),
-              ),
-            )),
+            ),
+            contentPadding: const EdgeInsets.all(16),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(37),
+            ),
+          ),
+        ),
       );
 
   Widget buildPassword() => Container(

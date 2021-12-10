@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:masakin_app/controllers/cart_controller.dart';
 import 'package:http/http.dart' as http;
+import 'package:masakin_app/widget/custom_app_bar.dart';
 import 'dart:convert';
-import '../../widget/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class orderSummary extends StatefulWidget {
   const orderSummary({Key? key}) : super(key: key);
@@ -32,7 +33,7 @@ class _orderSummaryState extends State<orderSummary> {
 
   order(String orderlist, String totalprice) async {
     final response = await http.post(
-       Uri.parse('https://masakin-rpl.herokuapp.com/order'),
+      Uri.parse('https://masakin-rpl.herokuapp.com/order'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -52,16 +53,199 @@ class _orderSummaryState extends State<orderSummary> {
     }
   }
 
-  createAlertDialog(BuildContext context2) {
-    return showDialog(
+  @override
+  Widget build(BuildContext context) {
+    double c_width = MediaQuery.of(context).size.width * 0.4;
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  children: [
+                    customAppBar(),
+                  ],
+                ),
+                Text(
+                  'Checkout',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                SizedBox(height: 22),
+                Text(
+                  'Ayam bakar pindika',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                SizedBox(height: 30),
+                Row(
+                  children: [
+                    Text(
+                      'Order Summary',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                SizedBox(
+                  height: 300,
+                  child: ListView.builder(
+                      itemCount: controller.foodList2.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white,
+                              boxShadow: kElevationToShadow[1],
+                            ),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
+                            child: Row(
+                              children: [
+                                Text(
+                                  '${controller.foodAmount[index]}x',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                Spacer(),
+                                Container(
+                                  width: c_width,
+                                  child: Text(
+                                    '${controller.foodName[index]}',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                                Spacer(),
+                                Text(
+                                  'Rp. ${controller.foodPrice[index]}',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }),
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Payment Summary',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                Row(
+                  children: [
+                    Text(
+                      'Total',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Spacer(),
+                    Text(
+                      'Rp. ${controller.getTotal()}',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 40),
+                orderButton2(context),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  createModal(BuildContext context2) {
+    return showModalBottomSheet(
+      backgroundColor: Color(0xFFF5C901).withOpacity(0.9),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+      ),
       context: context2,
       builder: (context2) {
-        return AlertDialog(
-          title: Text('Order Processed'),
-          content: Column(
+        return Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+          ),
+          child: Column(
             children: [
-              // Text(controller.foodlist()),
-              Text('Scan to pay ${controller.getTotal()}'),
+              SizedBox(height: 30),
+              Text(
+                'Scan to Pay',
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 22,
+                ),
+              ),
+              SizedBox(height: 30),
+              Image.asset(
+                'assets/images/barcode_saweria.jpg',
+                height: 200,
+                width: 200,
+              ),
+              Spacer(),
+              Text(
+                'or',
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 22,
+                ),
+              ),
+              Spacer(),
+              TextButton(
+                onPressed: () async {
+                  const url = 'https://saweria.co/masakin';
+                  if (await launch(url)) {
+                    await launch(url);
+                  } else {
+                    throw 'Could not launch $url';
+                  }
+                },
+                child: Text(
+                  'saweria.co/masakin',
+                  style: TextStyle(
+                    decoration: TextDecoration.underline,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 22,
+                  ),
+                ),
+              ),
+              Spacer(),
               ConfirmButton(context2),
             ],
           ),
@@ -70,191 +254,76 @@ class _orderSummaryState extends State<orderSummary> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        customAppBar(Icons.arrow_back_ios_new_outlined),
-        SizedBox(
-          height: 400,
-          child: ListView.builder(
-              itemCount: controller.foodList2.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  child: Center(
-                      child: Text('${controller.foodList2[index]}',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                          ))),
-                );
-              }),
-        ),
-        Text(
-          'total ${controller.getTotal()}',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        orderButton2(context),
-      ],
-    ));
-  }
-
   Container orderButton2(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(0, 50, 0, 30),
-      child: TextButton(
-          onPressed: () {
-            createAlertDialog(context);
-          },
-          child: Text('Order',
+      child: ElevatedButton(
+        onPressed: () {
+          createModal(context);
+        },
+        child: Row(
+          children: [
+            Icon(
+              Icons.assignment_outlined,
+              color: Colors.black,
+              size: 28,
+            ),
+            SizedBox(
+              width: 15,
+            ),
+            Text(
+              'Order',
               style: TextStyle(
                 fontSize: 18,
-                color: Colors.white,
+                color: Colors.black,
                 fontWeight: FontWeight.w500,
-              )),
-          style: TextButton.styleFrom(
-            elevation: 6,
-            padding: EdgeInsets.fromLTRB(55.0, 15.0, 55.0, 15.0),
-            backgroundColor: Color(0xFFF5C901),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(37)),
-          )),
+              ),
+            ),
+          ],
+        ),
+        style: ElevatedButton.styleFrom(
+          elevation: 5,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(37),
+          ),
+        ),
+      ),
     );
   }
 
   Widget ConfirmButton(BuildContext context2) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(0, 50, 0, 30),
-      child: TextButton(
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
+      child: Container(
+        child: ElevatedButton(
           onPressed: () {
             order(controller.foodlist().toString(),
                 controller.getTotal().toString());
             Navigator.pushReplacementNamed(context, '/mainPage');
             Navigator.pop(context2);
           },
-          child: Text('Ok',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-              )),
-          style: TextButton.styleFrom(
+          style: ElevatedButton.styleFrom(
+            primary: Colors.white,
             elevation: 6,
-            padding: EdgeInsets.fromLTRB(55.0, 15.0, 55.0, 15.0),
-            backgroundColor: Color(0xFFF5C901),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(37)),
-          )),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Confirm Payment',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
-// class orderSummary extends StatelessWidget {
-//   orderSummary({ Key? key }) : super(key: key);
-//   final cartController controller = Get.find();
-
-//   order(List orderlist) async {
-//     final response = await http.post(
-//       Uri.parse('https://masakin-rpl.herokuapp.com/testOrder'),
-//       headers: <String, String>{
-//         'Content-Type': 'application/json; charset=UTF-8',
-//       },
-//       body: jsonEncode(<String, List>{
-//         "orderMenu": orderlist,
-//       }),
-//     );
-
-//     if (response.statusCode == 200) {
-//       print("success");
-//       controller.clearList();
-//       // successDialog(context);
-//     } else {
-//       print("failed");
-//     }
-//   }
-
-//     createAlertDialog(BuildContext context) {
-//     return showDialog(
-//       context: context,
-//       builder: (context) {
-//         return AlertDialog(
-//           title: Text('Order Processed'),
-//           content: Column(
-//             children: [
-//               // Text(controller.foodlist()),
-//               Text('Scan to pay ${controller.getTotal()}'),
-//               ConfirmButton(context),
-//             ],
-//           ),
-//         );
-//       },
-//     );
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       child : Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         customAppBar(Icons.arrow_back_ios_new_outlined),
-//         orderButton2(context),
-//       ],
-//     ));
-//   }
-
-//   Container orderButton2(BuildContext context) {
-//     return Container(
-//       padding: EdgeInsets.fromLTRB(0, 50, 0, 30),
-//       child: TextButton(
-//           onPressed: () {
-//             createAlertDialog(context);
-           
-
-//           },
-//           child: Text('Order',
-//               style: TextStyle(
-//                 fontSize: 18,
-//                 color: Colors.white,
-//                 fontWeight: FontWeight.w500,
-//               )),
-//           style: TextButton.styleFrom(
-//             elevation: 6,
-//             padding: EdgeInsets.fromLTRB(55.0, 15.0, 55.0, 15.0),
-//             backgroundColor: Color(0xFFF5C901),
-//             shape:
-//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(37)),
-//           )),
-//     );
-//   }
-
-//    Widget ConfirmButton(BuildContext context) {
-//     return Container(
-//       padding: EdgeInsets.fromLTRB(0, 50, 0, 30),
-//       child: TextButton(
-//           onPressed: () {
-//             // order(controller.foodlist());
-//             Navigator.pushReplacementNamed(context, '/menuPage');
-//             Navigator.pop(context);
-//           },
-//           child: Text('Ok',
-//               style: TextStyle(
-//                 fontSize: 18,
-//                 color: Colors.white,
-//                 fontWeight: FontWeight.w500,
-//               )),
-//           style: TextButton.styleFrom(
-//             elevation: 6,
-//             padding: EdgeInsets.fromLTRB(55.0, 15.0, 55.0, 15.0),
-//             backgroundColor: Color(0xFFF5C901),
-//             shape:
-//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(37)),
-//           )),
-//     );
-//   }
-// }

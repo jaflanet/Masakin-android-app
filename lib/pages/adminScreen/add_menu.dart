@@ -81,75 +81,80 @@ class _addMenuState extends State<addMenu> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-            body: SingleChildScrollView(
-                padding: EdgeInsets.only(top: 60, left: 30, right: 30),
-                child: Column(children: [
-                  Row(
-                    children: [
-                      customAppBar(Icons.arrow_back_ios_new_outlined),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 7),
-                        child: const Text(
-                          'Add new menu',
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 50),
-                  TextButton(onPressed: getImage, child: Text('upload')),
-                  SizedBox(height: 20),
-                  buildTitle(),
-                  SizedBox(height: 20),
-                  buildPrice(),
-                  SizedBox(height: 20),
-                  buildDescription(),
-                  SizedBox(height: 20),
-                  buildType(),
-                  SizedBox(height: 30),
-                  buildButtonSubmit(),
-                  // buildButtonBack(),
-                ]))));
+      child: Scaffold(
+        body: SingleChildScrollView(
+          padding: EdgeInsets.only(left: 30, right: 30),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  customAppBar(),
+                ],
+              ),
+              SizedBox(height: 50),
+              const Text(
+                'Add new menu',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              SizedBox(height: 50),
+              buildTitle(),
+              SizedBox(height: 20),
+              buildPrice(),
+              SizedBox(height: 20),
+              buildDescription(),
+              SizedBox(height: 20),
+              buildType(),
+              SizedBox(height: 30),
+              IconButton(
+                onPressed: getImage,
+                icon: Icon(
+                  Icons.add_a_photo_outlined,
+                  size: 30,
+                ),
+              ),
+              SizedBox(height: 30),
+              buildButtonSubmit(context),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
-  Widget buildButtonSubmit() => TextButton(
-      onPressed: () {
-        postMenu(image, menu.text, type.text, int.parse(price.text),
-            description.text);
-      },
-      child: Text('Submit',
+  Widget buildButtonSubmit(BuildContext context) => TextButton(
+        onPressed: () {
+          postMenu(image, menu.text, type.text, int.parse(price.text),
+              description.text);
+          Navigator.pushReplacementNamed(context, '/mainPage');
+        },
+        child: Text(
+          'Submit',
           style: TextStyle(
-              fontSize: 15, color: Colors.white, fontFamily: 'Montserrat')),
-      style: TextButton.styleFrom(
-        elevation: 6,
-        shadowColor: Colors.black,
-        padding: EdgeInsets.fromLTRB(30.0, 5.0, 30.0, 5.0),
-        backgroundColor: Color(0xFFFF8023),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(37)),
-      ));
-
-// Widget buildButtonBack() => TextButton(
-//     onPressed: () {
-//       Navigator.pushReplacementNamed(context, '/account');
-//     },
-//     child: Text('Back',
-//         style: TextStyle(
-//             fontSize: 15, color: Colors.white, fontFamily: 'Montserrat')),
-//     style: TextButton.styleFrom(
-//       elevation: 6,
-//       shadowColor: Colors.black,
-//       padding: EdgeInsets.fromLTRB(30.0, 5.0, 30.0, 5.0),
-//       backgroundColor: Color(0xFFFF8023),
-//       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(37)),
-//     ));
+            fontSize: 18,
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        style: TextButton.styleFrom(
+          elevation: 6,
+          shadowColor: Colors.black,
+          padding: EdgeInsets.fromLTRB(55.0, 15.0, 55.0, 15.0),
+          backgroundColor: Color(0xFFFF8023),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(37),
+          ),
+        ),
+      );
 
   Widget buildTitle() => Container(
         child: TextFormField(
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
+          ),
           controller: menu,
           decoration: InputDecoration(
             contentPadding: EdgeInsets.only(
@@ -158,17 +163,23 @@ class _addMenuState extends State<addMenu> {
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(27),
-              borderSide: BorderSide(),
+              borderSide: BorderSide(
+                color: Color(0xFFF5C901),
+                width: 2,
+              ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(27),
-              borderSide: BorderSide(),
+              borderSide: BorderSide(
+                color: Color(0xFFF5C901),
+                width: 2,
+              ),
             ),
             labelText: 'Menu name',
             labelStyle: TextStyle(
+              fontWeight: FontWeight.w500,
               color: Colors.black,
-              fontSize: 14,
-              fontFamily: 'Montserrat',
+              fontSize: 18,
             ),
           ),
         ),
@@ -176,6 +187,10 @@ class _addMenuState extends State<addMenu> {
 
   Widget buildPrice() => Container(
         child: TextFormField(
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
+          ),
           controller: price,
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
@@ -185,17 +200,23 @@ class _addMenuState extends State<addMenu> {
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(27),
-              borderSide: BorderSide(),
+              borderSide: BorderSide(
+                color: Color(0xFFF5C901),
+                width: 2,
+              ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(27),
-              borderSide: BorderSide(),
+              borderSide: BorderSide(
+                color: Color(0xFFF5C901),
+                width: 2,
+              ),
             ),
             labelText: 'Menu price',
             labelStyle: TextStyle(
+              fontWeight: FontWeight.w500,
               color: Colors.black,
-              fontSize: 14,
-              fontFamily: 'Montserrat',
+              fontSize: 18,
             ),
           ),
         ),
@@ -203,6 +224,10 @@ class _addMenuState extends State<addMenu> {
 
   Widget buildDescription() => Container(
         child: TextFormField(
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
+          ),
           controller: description,
           keyboardType: TextInputType.multiline,
           maxLines: null,
@@ -215,17 +240,23 @@ class _addMenuState extends State<addMenu> {
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(27),
-              borderSide: BorderSide(),
+              borderSide: BorderSide(
+                color: Color(0xFFF5C901),
+                width: 2,
+              ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(27),
-              borderSide: BorderSide(),
+              borderSide: BorderSide(
+                color: Color(0xFFF5C901),
+                width: 2,
+              ),
             ),
             labelText: 'Description',
             labelStyle: TextStyle(
+              fontWeight: FontWeight.w500,
               color: Colors.black,
-              fontSize: 14,
-              fontFamily: 'Montserrat',
+              fontSize: 18,
             ),
           ),
         ),
@@ -233,6 +264,10 @@ class _addMenuState extends State<addMenu> {
 
   Widget buildType() => Container(
         child: TextFormField(
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
+          ),
           controller: type,
           decoration: InputDecoration(
             contentPadding: EdgeInsets.only(
@@ -241,17 +276,23 @@ class _addMenuState extends State<addMenu> {
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(27),
-              borderSide: BorderSide(),
+              borderSide: BorderSide(
+                color: Color(0xFFF5C901),
+                width: 2,
+              ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(27),
-              borderSide: BorderSide(),
+              borderSide: BorderSide(
+                color: Color(0xFFF5C901),
+                width: 2,
+              ),
             ),
             labelText: 'Type',
             labelStyle: TextStyle(
               color: Colors.black,
-              fontSize: 14,
-              fontFamily: 'Montserrat',
+              fontWeight: FontWeight.w500,
+              fontSize: 18,
             ),
           ),
         ),

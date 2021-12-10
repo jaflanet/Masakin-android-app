@@ -34,23 +34,14 @@ class _MenuScreenState extends State<MenuScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Nama restoran',
+                    'Pujasera M.O.M',
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 24,
                     ),
                   ),
                   SizedBox(
-                    height: 9,
-                  ),
-                  Text(
-                    'Rating: ',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 6,
+                    height: 20,
                   ),
                   Row(
                     children: [

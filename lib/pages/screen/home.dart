@@ -15,44 +15,46 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-     double c_width = MediaQuery.of(context).size.width * 0.65;
-     return Column(
+    double c_width = MediaQuery.of(context).size.width * 0.65;
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Stack(
           children: [
             Container(
-                decoration: BoxDecoration(
-                  color: Color(0xFFF5C901),
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(40),
-                  ),
+              decoration: BoxDecoration(
+                color: Color(0xFFF5C901),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(40),
                 ),
-                height: 180,
               ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(30, 30, 30, 0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Image.asset(
-                          'assets/images/splash.png',
-                          height: 60,
+              height: 180,
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(20, 30, 30, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Image.asset(
+                        'assets/images/splash.png',
+                        height: 60,
+                      ),
+                      SizedBox(width: 20),
+                      Text(
+                        'Masak.in',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 24,
                         ),
-                        SizedBox(width: 20),
-                        Text(
-                          'Masak.in',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 24,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 20),
-                    Row(children: [
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Row(children: [
                       Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,52 +99,53 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ]),
-                  ],
-                ),
-              ),  
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
-         Padding(
-            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 0),
-                  child: Text(
-                    'Discover',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
+        Padding(
+          padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: 0),
+                child: Text(
+                  'Discover',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              SizedBox(height: 10),
+              carouselSlider(),
+              SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.only(left: 0),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.history,
+                      size: 24,
                     ),
-                  ),
-                ),
-                SizedBox(height: 10),
-                carouselSlider(),
-                SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.only(left: 0),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.history,
-                        size: 24,
+                    SizedBox(width: 10),
+                    Text(
+                      'History',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
                       ),
-                      SizedBox(width: 10),
-                      Text(
-                        'History',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
+        ),
         Expanded(child: OrderList()),
       ],
     );

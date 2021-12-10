@@ -1,13 +1,11 @@
-import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:masakin_app/api/food_api.dart';
 import 'package:masakin_app/controllers/cart_controller.dart';
 import 'package:get/get.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+
 import 'package:masakin_app/models/food.dart';
 import 'package:masakin_app/widget/search_widget.dart';
-import '../../widget/widgets.dart';
+
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'dart:async';
 
@@ -62,20 +60,22 @@ class _FoodList extends State<FoodList> {
           ))
         : Scaffold(
             body: Column(
-              children: <Widget>[
+              children: [
+                buildSearch(),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(25, 0, 0, 20),
-                  child: Container(
-                    child: Text(
-                      'Menu',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 20,
+                  padding: EdgeInsets.only(left: 20, bottom: 15),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Menu',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 20,
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 ),
-                buildSearch(),
                 Expanded(
                   child: ListView.builder(
                     itemCount: foods.length,
