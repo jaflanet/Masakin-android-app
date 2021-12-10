@@ -191,6 +191,7 @@ class _orderSummaryState extends State<orderSummary> {
   createModal(BuildContext context2) {
     double c_height = MediaQuery.of(context).size.height * 1;
     return showModalBottomSheet(
+      isScrollControlled: true,
       backgroundColor: Color(0xFFF5C901).withOpacity(0.9),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
