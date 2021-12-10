@@ -10,7 +10,7 @@ class CartProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double c_height = MediaQuery.of(context).size.height * 0.5;
+    double c_height = MediaQuery.of(context).size.height * 0.45;
     return Obx(
       () => SizedBox(
         height: c_height,
