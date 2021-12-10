@@ -71,7 +71,7 @@ class _MainPage extends State<MainPage> {
       backgroundColor: Color(0xFFFDFBF2),
       bottomNavigationBar: CurvedNavigationBar(
         height: 65,
-        backgroundColor: Color(0xFFFDFBF2),
+        backgroundColor: Colors.transparent,
         color: Color(0xFFF5C901),
         animationDuration: Duration(milliseconds: 400),
         index: selectedIndex,

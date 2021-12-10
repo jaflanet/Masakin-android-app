@@ -2,25 +2,28 @@ class Food {
   final String photo;
   final String menuTitle;
   final num price;
+  final String type;
 
   const Food({
     required this.photo,
     required this.menuTitle,
     required this.price,
+    required this.type,
   });
 
-   factory Food.fromJson(Map<String, dynamic> json) => Food(
+  factory Food.fromJson(Map<String, dynamic> json) => Food(
         photo: json['photo'],
         menuTitle: json['menuTitle'],
         price: json['price'],
+        type: json['type']
       );
 
-      Map<String, dynamic> toJson() => {
-        'photo':photo,
+  Map<String, dynamic> toJson() => {
+        'photo': photo,
         'menuTitle': menuTitle,
         'price': price,
+        'type' : type,
       };
-
 
   // static const List<Food> generatedFood = [
   //   Food(

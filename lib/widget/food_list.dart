@@ -122,6 +122,7 @@ class _FoodList extends State<FoodList> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
+                padding: EdgeInsets.only(right:5),
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   child: Image.network(
@@ -132,12 +133,25 @@ class _FoodList extends State<FoodList> {
                   ),
                 ),
               ),
-              SizedBox(width: 20),
               Container(
                 width: c_width,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Container(
+                      padding: EdgeInsets.all(3),
+                      decoration:BoxDecoration(
+                        border: Border.all(color: Color(0xFFF5C901), width: 2),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Text(
+                        food.type,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 10,
+                        ),
+                      ),
+                    ),
                     Text(
                       food.menuTitle,
                       style: TextStyle(
