@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
-import 'package:masakin_app/pages/screen/food_cart.dart';
 import '../../widget/widgets.dart';
 
 class MenuScreen extends StatefulWidget {

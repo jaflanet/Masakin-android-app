@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:masakin_app/controllers/cart_controller.dart';
 import 'package:masakin_app/models/food.dart';
-import 'food_list.dart';
 
 class CartProducts extends StatelessWidget {
   final cartController controller = Get.find();
@@ -11,9 +10,10 @@ class CartProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double c_height = MediaQuery.of(context).size.height * 0.5;
     return Obx(
       () => SizedBox(
-        height: 400,
+        height: c_height,
         child: ListView.builder(
             itemCount: controller.foods.length,
             itemBuilder: (BuildContext context, int index) {

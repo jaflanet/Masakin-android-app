@@ -56,6 +56,7 @@ class _orderSummaryState extends State<orderSummary> {
   @override
   Widget build(BuildContext context) {
     double c_width = MediaQuery.of(context).size.width * 0.4;
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -188,6 +189,7 @@ class _orderSummaryState extends State<orderSummary> {
   }
 
   createModal(BuildContext context2) {
+    double c_height = MediaQuery.of(context).size.height * 1;
     return showModalBottomSheet(
       backgroundColor: Color(0xFFF5C901).withOpacity(0.9),
       shape: RoundedRectangleBorder(
@@ -197,6 +199,7 @@ class _orderSummaryState extends State<orderSummary> {
       context: context2,
       builder: (context2) {
         return Container(
+          height: c_height,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(30), topRight: Radius.circular(30)),
