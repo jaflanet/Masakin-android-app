@@ -47,6 +47,7 @@ class _orderSummaryState extends State<orderSummary> {
     if (response.statusCode == 200) {
       print("success");
       controller.clearList();
+       Navigator.pushReplacementNamed(context, '/mainPage');
       // successDialog(context);
     } else {
       print("failed");
@@ -79,7 +80,7 @@ class _orderSummaryState extends State<orderSummary> {
                 ),
                 SizedBox(height: 22),
                 Text(
-                  'Ayam bakar pindika',
+                  'Pujasera M.O.M',
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w500,
@@ -302,7 +303,6 @@ class _orderSummaryState extends State<orderSummary> {
           onPressed: () {
             order(controller.foodlist().toString(),
                 controller.getTotal().toString());
-            Navigator.pushReplacementNamed(context, '/mainPage');
             Navigator.pop(context2);
           },
           style: ElevatedButton.styleFrom(
