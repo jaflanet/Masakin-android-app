@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:masakin_app/pages/adminScreen/add_menu.dart';
-
 import 'package:masakin_app/pages/login_page.dart';
 import 'package:masakin_app/pages/register_page.dart';
-import 'package:masakin_app/pages/screen/food_cart.dart';
 import 'package:masakin_app/pages/screen/menu.dart';
 import 'package:masakin_app/widget/order_summary.dart';
 import 'pages/main_page.dart';

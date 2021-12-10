@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:masakin_app/models/restaurant.dart';
 import 'package:masakin_app/widget/history_list.dart';
 
 // ignore: must_be_immutable
