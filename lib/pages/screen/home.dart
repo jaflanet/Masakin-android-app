@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:masakin_app/models/restaurant.dart';
+import 'package:masakin_app/widget/history_list.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
@@ -14,20 +15,20 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    double c_width = MediaQuery.of(context).size.width * 0.65;
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Stack(
-            children: [
-              Container(
+     double c_width = MediaQuery.of(context).size.width * 0.65;
+     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Stack(
+          children: [
+            Container(
                 decoration: BoxDecoration(
                   color: Color(0xFFF5C901),
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(40),
                   ),
                 ),
-                height: 200,
+                height: 180,
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(30, 30, 30, 0),
@@ -98,16 +99,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     ]),
                   ],
                 ),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(30, 30, 30, 20),
+              ),  
+          ],
+        ),
+         Padding(
+            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: 10),
+                  padding: EdgeInsets.only(left: 0),
                   child: Text(
                     'Discover',
                     style: TextStyle(
@@ -120,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 carouselSlider(),
                 SizedBox(height: 20),
                 Padding(
-                  padding: const EdgeInsets.only(left: 10),
+                  padding: const EdgeInsets.only(left: 0),
                   child: Row(
                     children: [
                       Icon(
@@ -139,19 +140,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                buildRestaurant(),
-                buildRestaurant(),
-                buildRestaurant(),
-                buildRestaurant(),
-                buildRestaurant(),
               ],
             ),
           ),
-        ],
-      ),
+        Expanded(child: OrderList()),
+      ],
     );
   }
 

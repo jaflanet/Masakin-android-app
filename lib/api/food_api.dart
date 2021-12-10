@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:masakin_app/models/food.dart';
-import 'package:flutter/material.dart';
 
 class FoodApi {
   static Future<List<Food>> getFoods(String query) async {

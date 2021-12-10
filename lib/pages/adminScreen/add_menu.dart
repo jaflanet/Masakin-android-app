@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:masakin_app/widget/custom_app_bar.dart';
 import 'package:path/path.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -86,6 +87,7 @@ class _addMenuState extends State<addMenu> {
                 child: Column(children: [
                   Row(
                     children: [
+                      customAppBar(Icons.arrow_back_ios_new_outlined),
                       Padding(
                         padding: const EdgeInsets.only(left: 7),
                         child: const Text(

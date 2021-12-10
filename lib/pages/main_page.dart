@@ -86,7 +86,7 @@ class _MainPage extends State<MainPage> {
           Icon(
             Icons.person,
             size: 30,
-          )
+          ),
         ],
         onTap: (index) {
           setState(() {
