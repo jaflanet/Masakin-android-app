@@ -35,7 +35,7 @@ class _FoodList extends State<FoodList> {
 
   void debounce(
     VoidCallback callback, {
-    Duration duration = const Duration(milliseconds: 1000),
+    Duration duration = const Duration(milliseconds: 100),
   }) {
     if (debouncer != null) {
       debouncer!.cancel();

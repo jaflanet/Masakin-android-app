@@ -4,7 +4,7 @@ import 'package:masakin_app/controllers/cart_controller.dart';
 import 'package:masakin_app/models/food.dart';
 
 class CartProducts extends StatelessWidget {
-  final cartController controller = Get.find();
+  final cartController controller = Get.put(cartController());
 
   CartProducts({Key? key}) : super(key: key);
 
