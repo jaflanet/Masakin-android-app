@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:masakin_app/api/food_api.dart';
+import 'package:masakin_app/models/food.dart';
 import 'package:masakin_app/pages/screen/food_cart.dart';
 import 'package:masakin_app/navbar_key.dart';
 import 'package:masakin_app/pages/screen/account.dart';
@@ -18,6 +22,8 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPage extends State<MainPage> {
+  // List<Food> foods = [];
+  // String query = '';
   late SharedPreferences sharedPreferences;
   late String finalEmail;
 
@@ -26,7 +32,28 @@ class _MainPage extends State<MainPage> {
     super.initState();
     checkLoginStatus();
     getAccountData();
+    // getFoods('');
   }
+
+  // Future getImageData() async {
+  //   foods = await FoodApi.getFoods(query);
+  // }
+
+  // static Future<List<Food>> getFoods(String query) async {
+  //   final response =
+  //       await http.get(Uri.https('masakin-rpl.herokuapp.com', 'menu'));
+  //   if (response.statusCode == 200) {
+  //     final List foods = json.decode(response.body);
+  //     // print(foods);
+  //     return foods.map((json) => Food.fromJson(json)).toList().where((food) {
+  //       final titleLower = food.menuTitle.toLowerCase();
+  //       final searchLower = query.toLowerCase();
+  //       return titleLower.contains(searchLower);
+  //     }).toList();
+  //   } else {
+  //     throw Exception();
+  //   }
+  // }
 
   checkLoginStatus() async {
     final sharedPreferences = await SharedPreferences.getInstance();
@@ -105,6 +132,7 @@ class _MainPage extends State<MainPage> {
               );
             } else {
               var dataAccount = (snapshot.data as List<Account>).toList();
+              // print(foods);
               final screen = [
                 HomeScreen(accounts: dataAccount),
                 MenuScreen(),

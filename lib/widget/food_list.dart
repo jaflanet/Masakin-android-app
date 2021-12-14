@@ -108,13 +108,14 @@ class _FoodList extends State<FoodList> {
 
   Widget listFood(Food food) {
     double c_width = MediaQuery.of(context).size.width * 0.4;
-      Color getColor(String text) {
+    Color getColor(String text) {
       if (text == 'HALAL') {
         return Color(0xFF23AB17);
       } else {
         return Color(0xFFF5C901);
       }
     }
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 5, 20, 15),
       child: Container(
@@ -148,7 +149,8 @@ class _FoodList extends State<FoodList> {
                     Container(
                       padding: EdgeInsets.all(3),
                       decoration: BoxDecoration(
-                        border: Border.all(color: getColor(food.type), width: 2),
+                        border:
+                            Border.all(color: getColor(food.type), width: 2),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Text(
