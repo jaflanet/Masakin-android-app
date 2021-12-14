@@ -22,38 +22,38 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPage extends State<MainPage> {
-  // List<Food> foods = [];
-  // String query = '';
+  List<Food> foods = [];
+  String query = '';
   late SharedPreferences sharedPreferences;
   late String finalEmail;
 
   @override
   void initState() {
     super.initState();
+    getImageData();
     checkLoginStatus();
     getAccountData();
-    // getFoods('');
   }
 
-  // Future getImageData() async {
-  //   foods = await FoodApi.getFoods(query);
-  // }
+  Future getImageData() async {
+    foods = await getFoods(query);
+  }
 
-  // static Future<List<Food>> getFoods(String query) async {
-  //   final response =
-  //       await http.get(Uri.https('masakin-rpl.herokuapp.com', 'menu'));
-  //   if (response.statusCode == 200) {
-  //     final List foods = json.decode(response.body);
-  //     // print(foods);
-  //     return foods.map((json) => Food.fromJson(json)).toList().where((food) {
-  //       final titleLower = food.menuTitle.toLowerCase();
-  //       final searchLower = query.toLowerCase();
-  //       return titleLower.contains(searchLower);
-  //     }).toList();
-  //   } else {
-  //     throw Exception();
-  //   }
-  // }
+  static Future<List<Food>> getFoods(String query) async {
+    final response =
+        await http.get(Uri.https('masakin-rpl.herokuapp.com', 'menu'));
+    if (response.statusCode == 200) {
+      final List foods = json.decode(response.body);
+      // print(foods);
+      return foods.map((json) => Food.fromJson(json)).toList().where((food) {
+        final titleLower = food.menuTitle.toLowerCase();
+        final searchLower = query.toLowerCase();
+        return titleLower.contains(searchLower);
+      }).toList();
+    } else {
+      throw Exception();
+    }
+  }
 
   checkLoginStatus() async {
     final sharedPreferences = await SharedPreferences.getInstance();
@@ -134,7 +134,7 @@ class _MainPage extends State<MainPage> {
               var dataAccount = (snapshot.data as List<Account>).toList();
               // print(foods);
               final screen = [
-                HomeScreen(accounts: dataAccount),
+                HomeScreen(accounts: dataAccount, foods: foods),
                 MenuScreen(),
                 foodCart(),
                 AccountScreen(accounts: dataAccount)

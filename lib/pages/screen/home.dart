@@ -1,46 +1,19 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:masakin_app/models/food.dart';
 import 'package:masakin_app/widget/history_list.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
   List accounts = [];
-  // List foods = [];
-  HomeScreen({Key? key, required this.accounts}) : super(key: key);
+  List foods = [];
+  HomeScreen({Key? key, required this.accounts, required this.foods})
+      : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Food> foods = [];
-  String query = '';
-
-  @override
-  void initState() {
-    super.initState();
-    getFoods('');
-  }
-
-  static Future<List<Food>> getFoods(String query) async {
-    final response =
-        await http.get(Uri.https('masakin-rpl.herokuapp.com', 'menu'));
-    if (response.statusCode == 200) {
-      final List foods = json.decode(response.body);
-      print(foods);
-      return foods.map((json) => Food.fromJson(json)).toList().where((food) {
-        final titleLower = food.menuTitle.toLowerCase();
-        final searchLower = query.toLowerCase();
-        return titleLower.contains(searchLower);
-      }).toList();
-    } else {
-      throw Exception();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     double c_width = MediaQuery.of(context).size.width * 0.65;
@@ -230,7 +203,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   CarouselSlider carouselSlider() {
     return CarouselSlider.builder(
-        itemCount: foods.length,
+        itemCount: widget.foods.length,
         options: CarouselOptions(
             height: 150,
             enlargeCenterPage: true,
@@ -239,25 +212,19 @@ class _HomeScreenState extends State<HomeScreen> {
             autoPlayAnimationDuration: Duration(seconds: 2),
             viewportFraction: 1),
         itemBuilder: (context, i, id) {
-          // final food = foods[i];
-          return ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(22)),
-            child: Image.network(
-              widget.accounts[0].profilePicture,
-              fit: BoxFit.cover,
-            ),
-          );
-        }
-        // items: <Widget>[
-        //   for (var i = 0; i < foods.length; i++)
-        //     ClipRRect(
-        //       borderRadius: BorderRadius.all(Radius.circular(22)),
-        //       child: Image.network(
-        //         foods[i].photo,
-        //         fit: BoxFit.cover,
-        //       ),
-        //     ),
-        // ],
-        );
+          // final food = widget.foods[i];
+          if (widget.foods[i].photo != null) {
+            return ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(22)),
+              child: Image.network(
+                widget.foods[i].photo,
+                fit: BoxFit.cover,
+                height: 50,
+                width: 1000,
+              ),
+            );
+          }
+          return Text('');
+        });
   }
 }
