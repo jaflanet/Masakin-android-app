@@ -124,7 +124,7 @@ class _MainPage extends State<MainPage> {
       body: FutureBuilder(
           future: getAccountData(),
           builder: (context, snapshot) {
-            if (snapshot.data == null) {
+            if (snapshot.data == null || foods.isEmpty) {
               return Container(
                 child: Center(
                   child: SpinKitCircle(color: Color(0xFFF5C901)),

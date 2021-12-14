@@ -212,19 +212,15 @@ class _HomeScreenState extends State<HomeScreen> {
             autoPlayAnimationDuration: Duration(seconds: 2),
             viewportFraction: 1),
         itemBuilder: (context, i, id) {
-          // final food = widget.foods[i];
-          if (widget.foods[i].photo != null) {
-            return ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(22)),
-              child: Image.network(
-                widget.foods[i].photo,
-                fit: BoxFit.cover,
-                height: 50,
-                width: 1000,
-              ),
-            );
-          }
-          return Text('');
+          return ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(22)),
+            child: Image.network(
+              widget.foods[i].photo,
+              fit: BoxFit.cover,
+              height: 50,
+              width: 1000,
+            ),
+          );
         });
   }
 }
