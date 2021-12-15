@@ -55,7 +55,7 @@ class _addMenuState extends State<addMenu> {
 
   Future getImage() async {
     image = await ImagePicker().pickImage(source: ImageSource.gallery);
-    Image.file(image);
+    return Image.file(image);
   }
 
   Future postMenu(
