@@ -4,7 +4,7 @@ import 'package:masakin_app/controllers/cart_controller.dart';
 
 class CartTotal extends StatelessWidget {
   CartTotal({Key? key}) : super(key: key);
-  final cartController controller = Get.find();
+  final cartController controller = Get.put(cartController());
 
   @override
   Widget build(BuildContext context) {

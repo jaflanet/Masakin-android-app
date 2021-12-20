@@ -5,7 +5,9 @@ import 'package:masakin_app/widget/history_list.dart';
 // ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
   List accounts = [];
-  HomeScreen({Key? key, required this.accounts}) : super(key: key);
+  List foods = [];
+  HomeScreen({Key? key, required this.accounts, required this.foods})
+      : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -200,23 +202,25 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   CarouselSlider carouselSlider() {
-    return CarouselSlider(
-      options: CarouselOptions(
-          height: 150,
-          enlargeCenterPage: true,
-          autoPlay: true,
-          autoPlayCurve: Curves.fastOutSlowIn,
-          autoPlayAnimationDuration: Duration(seconds: 2),
-          viewportFraction: 1),
-      items: [
-        ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(22)),
-          child: Image.asset(
-            'assets/images/contohmakanan.png',
-            fit: BoxFit.cover,
-          ),
-        ),
-      ],
-    );
+    return CarouselSlider.builder(
+        itemCount: widget.foods.length,
+        options: CarouselOptions(
+            height: 150,
+            enlargeCenterPage: true,
+            autoPlay: true,
+            autoPlayCurve: Curves.fastOutSlowIn,
+            autoPlayAnimationDuration: Duration(seconds: 2),
+            viewportFraction: 1),
+        itemBuilder: (context, i, id) {
+          return ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(22)),
+            child: Image.network(
+              widget.foods[i].photo,
+              fit: BoxFit.cover,
+              height: 50,
+              width: 1000,
+            ),
+          );
+        });
   }
 }

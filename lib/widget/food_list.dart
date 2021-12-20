@@ -35,7 +35,7 @@ class _FoodList extends State<FoodList> {
 
   void debounce(
     VoidCallback callback, {
-    Duration duration = const Duration(milliseconds: 1000),
+    Duration duration = const Duration(milliseconds: 100),
   }) {
     if (debouncer != null) {
       debouncer!.cancel();
@@ -108,6 +108,14 @@ class _FoodList extends State<FoodList> {
 
   Widget listFood(Food food) {
     double c_width = MediaQuery.of(context).size.width * 0.4;
+    Color getColor(String text) {
+      if (text == 'HALAL') {
+        return Color(0xFF23AB17);
+      } else {
+        return Color(0xFFF5C901);
+      }
+    }
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 5, 20, 15),
       child: Container(
@@ -122,7 +130,7 @@ class _FoodList extends State<FoodList> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                padding: EdgeInsets.only(right:5),
+                padding: EdgeInsets.only(right: 5),
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   child: Image.network(
@@ -140,8 +148,9 @@ class _FoodList extends State<FoodList> {
                   children: [
                     Container(
                       padding: EdgeInsets.all(3),
-                      decoration:BoxDecoration(
-                        border: Border.all(color: Color(0xFFF5C901), width: 2),
+                      decoration: BoxDecoration(
+                        border:
+                            Border.all(color: getColor(food.type), width: 2),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Text(

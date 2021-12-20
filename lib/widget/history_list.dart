@@ -54,6 +54,12 @@ class _OrderList extends State<OrderList> {
             ));
           } else {
             var dataMenu = (snapshot.data as List<Order>).toList();
+            if (dataMenu.isEmpty) {
+              return Center(
+                child: Text('No transcations yet',
+                    style: TextStyle(color: Colors.black)),
+              );
+            }
             return ListView.builder(
               itemCount: dataMenu.length,
               itemBuilder: (context, i) {

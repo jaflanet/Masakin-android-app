@@ -11,7 +11,6 @@ class FoodApi {
       return foods.map((json) => Food.fromJson(json)).toList().where((food) {
         final titleLower = food.menuTitle.toLowerCase();
         final searchLower = query.toLowerCase();
-
         return titleLower.contains(searchLower);
       }).toList();
     } else {
